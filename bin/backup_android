@@ -1,0 +1,14 @@
+#!/bin/bash
+
+([[ -z $1 ]] || [[ ! -d $1 ]]) && \
+  echo "Usage: backup_android ANDROID_DIR" && \
+  exit 1
+
+android_dir=$1
+
+echo "$1"|egrep "\/$"
+[[ $? -ne 0 ]] && android_dir="${android_dir}/"
+
+NOW=`date +'%Y.%m.%d-%H.%M.%S'`
+cd ~/Documents/Android
+tar -C $android_dir --exclude "Audio" --exclude "Music" --exclude "Video" -cjvf "android-backup-${NOW}.tar.bz2"  *

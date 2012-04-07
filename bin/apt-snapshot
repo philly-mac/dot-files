@@ -1,0 +1,20 @@
+#!/bin/bash
+
+[ `id -u` != 0 ] && \
+    echo 'Run this script as root' && \
+    exit 1
+
+dpkg \
+    --get-selections | \
+    grep -v deinstall | \
+    sed 's/\tinstall//' | \
+    xargs apt-get -d --reinstall install
+
+NOW=`date +'%Y.%m.%d-%H.%I.%S'`
+
+if [[ -d "/data/apt-snapshot" ]]; then
+    cd /var/cache/apt/archives
+    rm /data/apt-snapshot/*
+    tar -cjf "/data/apt-snapshot/apt-snapshot-$NOW.tar.bz2" *
+fi
+

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+[ `id -u` != 0 ] && \
+  echo 'Run this script as root' && \
+  exit 1
+
+export PATH=/usr/local/bin:/usr/bin:$PATH
+
+# CONFIGURATION
+
+# The phassphrase that is used to encrypt the backups
+export PASSPHRASE=`cat /home/philip/bin/backup/conf/DUPLICITY_PHRASE`
+
+# Name of the backup disk
+BACKUP_TYPE='incremental'
+NOW=`date +'%Y.%m.%d-%H.%M.%S'`
+DISKNAME="BACKUP"
+BACKUP_DIR=/media/$DISKNAME
+BACKUP_SCRIPTS_DIR=/home/philip/bin/backup
+TMP_DIR=/home/philip/tmp
+NUM_OF_FULL_BACKUPS=1
+MYSQL_BACKUP_DIR=$TMP_DIR/mysql
+POSTGRESQL_BACKUP_DIR=$TMP_DIR/postgresql
+DUMPS_DIR=$TMP_DIR/dumps
+BACKUP_LOG=$BACKUP_SCRIPTS_DIR/logs/backup-$NOW.log
+SNAPSHOT_DIR_ENCRYPT=/media/$DISKNAME/snapshot-encrypt
+SNAPSHOT_DIR_NORMAL=/media/$DISKNAME/snapshot-normal
+DEST="file://$SNAPSHOT_DIR_ENCRYPT"
+BACKUP_TYPE=$1
+HOUSE_KEEPING=$2
+
+if [[ -n $1 ]]; then
+  BACKUP_TYPE=$1
+fi
+
+function display_message {
+  puts "******************* $1 *******************"
+  echo "******************* $1 *******************" >> $BACKUP_LOG
+}
+
+# END CONFIGURATION

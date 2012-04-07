@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+number_of_numbers = ARGV[0] || 1
+
+sets = []
+
+number_of_numbers.to_i.times do |i|
+  sets[i] ||= []
+  while sets[i].size != 6
+    rand_num = rand(50)
+    rand_num = 1 if rand_num == 0
+    sets[i] << rand_num
+    sets[i].uniq!
+  end
+  sets[i].sort!
+end
+
+sets.each do |a_set|
+  puts a_set.inspect
+end

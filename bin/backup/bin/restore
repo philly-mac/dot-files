@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source /home/philip/bin/backup/conf/global
+
+RESTORE_DATA=$1
+RESTORE_POINT=$2
+
+if [ -n "$RESTORE_DATA" ]; then
+    [ ! -n "$RESTORE_POINT" ] && RESTORE_POINT=/
+    if [ -e "${RESTORE_POINT}${RESTORE_DATA}" ]; then
+      echo "Overwrite data at ${RESTORE_POINT}${RESTORE_DATA} yes/no?"
+      read ANSWER
+    else
+      ANSWER='yes'
+    fi
+
+  if [ "$ANSWER" == "yes" ]; then
+    duplicity restore \
+      --verbosity=5 \
+      --force \
+      --file-to-restore "${RESTORE_DATA}" \
+      "${DEST}" "${RESTORE_POINT}${RESTORE_DATA}"
+  fi
+fi

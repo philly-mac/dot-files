@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+if file_to_encode = ARGV.first
+  puts file_to_encode
+  encoded_file_name = file_to_encode.split('/').last.split('.').first
+  cmd = "HandBrakeCLI -I -f m4v -Z Apple+iPod -i \"#{file_to_encode}\" -o \"/home/philip/#{encoded_file_name}.m4v\""
+  `#{cmd}`
+end
+

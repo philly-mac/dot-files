@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cd /tmp;
+rm LATEST;
+wget http://build.chromium.org/buildbot/snapshots/chromium-rel-linux/LATEST;
+
+VERSION=`cat /tmp/LATEST`
+LASTEST_CHROME="$VERSION-chrome-linux.zip"
+
+cd ~/Downloads;
+rm -rf chrome-linux;
+if [[ ! -e ~/Downloads/$LASTEST_CHROME ]]; then
+  echo "$LASTEST_CHROME doesn't exist'"
+  rm *-chrome-linux.zip
+  wget "http://build.chromium.org/buildbot/snapshots/chromium-rel-linux/$VERSION/chrome-linux.zip" && \
+  mv chrome-linux.zip "$LASTEST_CHROME";
+fi
+[ ! -d ~/Downloads/chrome-linux ] && unzip "$LASTEST_CHROME";
+sudo rm -rf /usr/local/chrome-linux;
+sudo mv chrome-linux /usr/local/;
+[ ! -L "/usr/local/bin/chrome" ] && [ -d "/usr/local/chrome-linux" ] && ln -s /usr/local/chrome-linux/chrome /usr/local/bin/chrome
+

@@ -1,0 +1,23 @@
+source ~/.bash/colors
+source ~/.bash/ps1
+
+alias b="bundle"
+alias bi="b install --path vendor"
+alias bu="b update"
+alias be="b exec"
+alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
+alias g='git'
+alias vi='vim'
+
+PATH=$HOME/bin:$PATH
+
+[[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
+
+pacman -Q ruby 2>&1 > /dev/null
+
+[[ $? != '0' ]] && sudo pacman -S ruby
+
+ruby ~/.bash/link_files.rb
+
+ps1_set --prompt '\$' --notime

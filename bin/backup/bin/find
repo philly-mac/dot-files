@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source /home/philip/bin/backup/conf/global
+
+SEARCH_TERM=$1
+REINDEX=$2
+NUM_LEVELS=$3
+
+[ ! -n "$NUM_LEVELS" ] && NUM_LEVELS=1
+
+if [ ! -e "$BACKUP_SCRIPTS_DIR/tmp/find_index" ] || [ "$REINDEX" == 'true' ]; then
+  duplicity list-current-files \
+    --verbosity=5 \
+    "${DEST}" > "$BACKUP_SCRIPTS_DIR/tmp/find_index"
+fi
+
+egrep -i "(${SEARCH_TERM}\/[^\/]*){$NUM_LEVELS}$" $BACKUP_SCRIPTS_DIR/tmp/find_index
