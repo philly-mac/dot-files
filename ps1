@@ -1,5 +1,6 @@
-#" hides buffers instead of closing them!/usr/bin/env bash
+#!/usr/bin/env bash
 
+#" hides buffers instead of closing them!/usr/bin/env bash
 #
 # From: https://github.com/wayneeseguin/rvm/blob/master/contrib/ps1_functions
 #

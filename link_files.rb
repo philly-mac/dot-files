@@ -11,9 +11,9 @@ files = [
   ["#{base}/vim",       "#{home}/.vim"],
 ]
 
-files.each do |file|
-  unless File.exist?(file[1])
-    puts "Creating #{file[1]} ..."
-    FileUtils.ln_s(file[0], file[1])
+files.each do |file, linked_file|
+  unless File.exist?(linked_file)
+    puts "Creating #{linked_file} ..."
+    FileUtils.ln_s(file, linked_file)
   end
 end

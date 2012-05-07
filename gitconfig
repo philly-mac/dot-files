@@ -1,15 +1,14 @@
 [user]
   name  = Philip MacIver
-	email = philip.maciver@xing.com
+  email = philip@ivercore.com
 [color]
   status = auto
   diff = auto
   branch = auto
   interactive = auto
 [merge]
-  tool = opendiff
-  tool = mate -w
-  ff = false
+  tool = meld
+  ff   = false
 [core]
   excludesfile     = ~/.gitignore
   ignorecase       = true
@@ -25,10 +24,3 @@
   cp = cherry-pick
   b  = branch
   pr = pull --rebase
-[giggle]
-	main-window-maximized = true
-	main-window-geometry = 467x281+1440+0
-	history-view-vpane-position = 827
-	main-window-view = FileView
-	file-view-vpane-position = 957
-	file-view-hpane-position = 389

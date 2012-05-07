@@ -87,7 +87,6 @@ def remove_stale_bundles
   end
 end
 
-
 def update_code(base_dir, package, repo = nil)
   puts "Checking #{package}..."
   git_repo = repo || "#{gitbase}/#{package}.git"
@@ -133,4 +132,3 @@ if !File.exist?("~/.vimrc")
 end
 
 remove_stale_bundles
-
