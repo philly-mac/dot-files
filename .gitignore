@@ -1,0 +1,5 @@
+*.log
+DUPLICITY_PHRASE
+tmp
+rvm*
+mozilla/firefox/**/Cache

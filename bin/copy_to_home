@@ -1,0 +1,14 @@
+#!/bin/bash
+
+from_location=$1
+
+[[ -z $from_location ]] && \
+  echo "You didn't enter a from location" && \
+  exit 1
+
+for file in ~/*; do
+  echo "Copy from $file to ~/ Y/n?"
+  read answer
+  [[ "$answer" != 'n' ]] && \
+    rsync -auv "$file" ~/
+done

@@ -1,0 +1,47 @@
+#!/bin/bash
+
+[[ -z $1 ]] && \
+  echo "Useage: node mount|umout [force]|remount" && \
+  exit 1
+
+#dpkg -l | grep sshfs 2>&1 > /dev/null
+
+#[[ $? == '1' ]] && \
+#  sudo apt-get install -y sshfs
+
+REMOTE_DIR="/home/protonet/Media"
+LOCAL_DIR='/mnt/p3-media'
+
+function mount_remote {
+  echo 'Mounting..'
+  if [[ ! -d $LOCAL_DIR ]]; then
+    sudo mkdir $LOCAL_DIR
+    sudo chown -Rf philip:philip $LOCAL_DIR
+  fi
+
+  # TODO: Check if the system is already mounted
+  #so you don't try and double mount it
+  sshfs protonet@protonet-3:$REMOTE_DIR $LOCAL_DIR
+}
+
+function umount_remote {
+  echo 'Unounting..'
+  OPTION="-u"
+  if [[ $1 == 'force' ]]; then
+    echo "forcing..."
+    OPTION="$OPTION -z"
+  fi
+
+  fusermount $OPTION $LOCAL_DIR
+}
+
+if [[ $1 == 'mount' ]]; then
+  mount_remote
+elif [[ $1 == 'umount' ]]; then
+  umount_remote $2
+elif [[ $1 == 'remount' ]]; then
+  echo 'Remounting..'
+  umount_remote 'force'
+  mount_remote
+fi
+

@@ -1,0 +1,337 @@
+filetype off
+
+silent! call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags()
+
+" File extension detection switch
+filetype on
+filetype plugin on
+filetype indent on
+
+" Set to make sure we don't behave like vi but vim
+set nocompatible
+
+" hides buffers instead of closing them
+set hidden
+
+" change the color scheme
+colorscheme vibrantink
+
+"
+filetype plugin on
+
+" type of file; triggers the FileType event when set
+filetype indent on
+
+" Turn on syntax highlighting
+syntax on
+
+"
+"let g:toggleTabs = 0
+
+" Add autocomplete
+set ofu=syntaxcomplete#Complete
+
+" number of spaces a <Tab> in the text stands for
+set ts=2
+
+" number of spaces used for each step of (auto)indent
+set sw=2
+
+" a <Tab> in an indent inserts 'shiftwidth' spaces
+set sta
+
+" Smart indent
+set si
+
+" automatically set the indent of a new line
+set ai
+
+" automatically read a file when it was modified outside of Vim
+set ar
+
+" Copy whitespace for indenting from previous line
+set ci
+
+" Expand tab to spaces
+set et
+
+" Change the font fro gVim
+set guifont=Monospace
+
+"
+set anti
+
+" How many item to keep in history list
+set hi=1000
+
+" highlight searches
+set hlsearch
+
+" ignore case when searching
+set ignorecase
+
+" incremental searchshow match for partly typed search command
+set is
+
+" always display the status line
+set laststatus=2
+
+" allways show status line
+set ls=2
+
+" Display line numbers
+set number
+
+" Width of the line number carret
+set nuw=1
+
+" paste mode, insert typed text literally
+set paste
+
+" show the cursor position all the time
+set ruler
+
+" override 'ignorecase' when pattern has upper case characters
+set scs
+
+" how selecting text behaves 'old', 'inclusive' or 'exclusive';
+set sel=inclusive
+
+" when to use a tab pages line. 0, 1 or 2;
+set showtabline=0
+
+" when to start Select mode instead of Visual mode 'mouse', 'key' and/or 'cmd';
+set slm="mouse"
+
+" When inserting a bracket, briefly jump to its match
+"set sm
+
+" many jump commands move the cursor to the first non-blank
+set sol
+
+" Number of spaces to insert for a tab
+set sts=2
+
+" show title in console title bar
+set title
+
+" smoother changes
+set ttyfast
+
+" Number of undos to keep
+set ul=1000
+
+"
+set cursorline
+
+" Don't backup
+set nobackup
+
+" Don't create swap files
+set noswapfile
+
+" Git integration
+set shellslash
+
+" Lines don't wrap.
+set nowrap
+
+" Automatic saving on file change
+set autowrite
+
+" Autoreload on file change
+set autoread
+
+" Character encoding / file encoding
+set encoding=utf-8
+set fileencoding=utf-8
+
+if has("autocmd")
+  " Reload the .vimrc when it is saved
+  "autocmd bufwritepost .vimrc source ~/.vimrc
+
+  " Remove trailing spaces when saving
+  autocmd BufWritePre * :%s/\s\+$//e
+
+  " Automatically save the sate of vim when you close it down
+  autocmd VimLeave * :mks ~/.vim/sessions/autosession
+
+  " Start NERDTree in the home directory
+  autocmd VimEnter * :cd ~
+
+endif
+
+" Load the last auto saved sessions
+nmap <Leader>s :so ~/.vim/sessions/autosession<CR>
+
+" Command-T configuration
+let g:CommandTMaxHeight=20
+map <C-A-o> <esc>:CommandT<cr>
+
+" ZoomWin configuration
+nmap <Leader><Leader> :ZoomWin<CR>
+imap <Leader><Leader> :ZoomWin<CR>
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" Start without the toolbar
+"set guioptions-=T
+
+" Remove menu bar
+"set guioptions-=m
+
+" open up your .vimrc
+nmap <Leader>ev :e ~/.vimrc<CR>
+nmap <Leader>sv :so ~/.vimrc<CR>
+
+" saving
+imap <C-s> <esc>:w<cr>a
+nmap <C-s> :w<cr>
+
+" Delete line
+nmap <C-d> dd
+imap <C-d> <esc>dd<esc>i
+
+" Cut
+vmap <C-x> x
+imap <C-x> <esc>x<esc>i
+nmap <C-x> x
+
+" Copy
+nmap <C-c> y
+imap <C-c> <esc>y
+vmap <C-c> y
+
+" Paste
+imap <C-p> <esc>p<esc>i
+nmap <C-p> p
+vmap <C-p> p
+
+" open NERDTree
+nmap <C-A-n> <esc>:NERDTreeToggle<cr>
+imap <C-A-n> <esc>:NERDTreeToggle<cr>
+
+" Close window
+nmap <C-A-w> <esc>:bd<cr>
+imap <C-A-w> <esc>:bd<cr>
+
+" Window movement
+nmap <silent> <CS-Up> :wincmd k<CR>
+nmap <silent> <CS-Down> :wincmd j<CR>
+nmap <silent> <CS-Left> :wincmd h<CR>
+nmap <silent> <CS-Right> :wincmd l<CR>
+
+imap <silent> <CS-Up> :wincmd k<CR>
+imap <silent> <CS-Down> :wincmd j<CR>
+imap <silent> <CS-Left> :wincmd h<CR>
+imap <silent> <CS-Right> :wincmd l<CR>
+
+" Window split horizontal
+nmap <C-A-h> <esc>:split<cr>
+imap <C-A-h> <esc>:split<cr>
+
+" Windo split vertical
+nmap <C-A-v> <esc>:vsplit<cr>
+imap <C-A-v> <esc>:vsplit<cr>
+
+" Commenting
+nmap <C-A-m> <esc>
+imap <C-A-m> <esc>
+
+" vmap <CS-Up> <esc>
+" vmap <CS-Down> <esc>
+" vmap <CS-Left> <esc>
+" vmap <CS-Right> <esc>
+"
+
+" Command-Shift-F for Ack
+nmap <C-k> :Ack<space>
+imap <C-k> :Ack<space>
+
+" Command-e for ConqueTerm
+nmap <C-e> :call StartTerm()<CR>
+imap <C-e> :call StartTerm()<CR>
+
+" Command-][ to increase/decrease indentation
+vmap <C-]> >gv
+vmap <C-[> <gv
+
+" Undo
+nmap <silent> <C-z> <ESC>:undo<CR>
+imap <silent> <C-z> <ESC>:undo<CR>i
+
+" Redo
+nmap <silent><C-A-z> <ESC>:redo<CR>
+imap <silent><C-A-z> <ESC>:redo<CR>i
+
+" Without setting this, ZoomWin restores windows in a way that causes
+" equalalways behavior to be triggered the next time CommandT is used.
+" This is likely a bludgeon to solve some other issue, but it works
+set noequalalways
+
+" Ignore gems directory of a project for CommandT
+set wildignore+=gems/*,*.gif,*.py[co],.git,*.jpg,vendor/*,logs/*,log/*
+
+" Show special characters
+set list
+
+" which special characters to use
+set listchars=tab:▸\ ,eol:¬
+
+" Show trailing spaces
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/
+
+" Clear highlight searchs
+nmap <silent> <Leader>/ :nohlsearch<CR>
+
+" This should you all of the syntax highlight groups
+" :source $VIMRUNTIME/syntax/hitest.vim
+
+" SuperTab completion
+inoremap <C-Space> <C-x><C-p>
+
+" Omni Completion
+inoremap <Leader>p <C-x><C-o>
+
+" Execute a NERDTreeFind whenever a file is opened
+"noremap <Leader>f :NERDTreeFind<CR>
+inoremap <Leader>f <ESC>:NERDTreeFind<CR>
+nnoremap <Leader>f <ESC>:NERDTreeFind<CR>
+
+" Recent Buffer Menu
+nnoremap <C-Tab> :BufExplorer<CR>
+inoremap <C-Tab> <ESC>:BufExplorer<CR>i
+
+" Large Recent buffer ment
+nnoremap <Leader>l :MRU<CR>
+inoremap <Leader>l :MRU<CR>
+
+" Adding stuff to the menu bar
+":amenu ToolBar.Hello :echo 'hello'<CR>
+"
+
+" Refresh all buffers from disk
+nmap <Leader>r :set noconfirm<CR>:bufdo e!<CR>:set confirm<CR>:syntax on<CR>
+
+if has("gui_running")
+  " find
+  nmap <silent> <C-f> <ESC>:promptfind<CR>
+  imap <silent> <C-f> <ESC>:promptfind<CR>
+
+  " find and replace
+  nmap <silent> <C-h> <ESC>:promptrepl<CR>
+  imap <silent> <C-h> <ESC>:promptrepl<CR>
+else
+  " Search and replace
+  imap <C-h> <esc>:%s/old/new/gc
+  nmap <C-h> <esc>:%s/old/new/gc
+endif
+

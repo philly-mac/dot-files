@@ -1,0 +1,27 @@
+[user]
+  name  = Philip MacIver
+  email  = philip@ivercore.com
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+[merge]
+  tool = meld
+  tool = mate -w
+  ff   = false
+[core]
+  excludesfile     = ~/.gitignore
+  ignorecase       = true
+  logallrefupdates = true
+  bare             = false
+[apply]
+  whitespace = nowarn
+[alias]
+  ci = commit
+  co = checkout
+  st = status
+  br = branch
+  cp = cherry-pick
+  b  = branch
+  pr = pull --rebase

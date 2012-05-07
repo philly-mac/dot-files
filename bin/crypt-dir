@@ -1,0 +1,184 @@
+#!/usr/bin/env ruby
+
+class CryptDir
+  def initialize(cmd)
+    dir_to_mount(ARGV[1])
+    process_command(cmd)
+  end
+
+  def process_command(cmd)
+    case cmd
+    when "setup" then
+      setup_dir
+    when "teardown" then
+      teardown_dir
+    when "list" then
+      list_dirs
+      puts encrypted_dir_full
+    when "mount" then
+      mount_dir
+    when "umount" then
+      umount_dir
+    else
+      cmd_list = <<CMD_LIST
+crypt-dir [ setup | teardown | mount | umount ] [ directory ]
+
+  list     - list all directories that could be mounted, and says whethere or not they are mounted
+  setup    - create a new directory in the encrypted location, ready to be mounted
+  teardown - removes an empty directory in the encrypted location
+  mount    - mounts and unencrypts a directory from the encrypted location
+  umount   - unmounts a mount and encrypted directory
+CMD_LIST
+      puts cmd_list
+    end
+  end
+
+  def setup_dir
+    if dir_to_mount
+      if !File.exists?(encrypted_dir_full)
+        puts "creating #{encrypted_dir_full}"
+        exec_cmd(:mkdir_crypt)
+        system "echo 'true' > #{encrypted_dir_full}/.unencrypted"
+        list_dirs
+      else
+        puts "Already exists #{encrypted_dir_full}"
+      end
+    end
+  end
+
+  def teardown_dir
+    if dir_to_mount
+      if File.exists?(encrypted_dir_full)
+        puts "removing empty directory #{encrypted_dir_full}"
+        exec_cmd(:rmdir_crypt)
+        list_dirs
+      else
+        puts "Doesn't exist #{encrypted_dir_full}"
+      end
+    end
+  end
+
+  def list_dirs
+    crypted_dirs.each do |dir|
+      mounted = mounted_encrypted_dirs =~ %r{#{home_dir}/#{dir}}
+      puts "#{dir} --> #{mounted ? 'Mounted' : 'Unmounted'}"
+    end
+  end
+
+  def mount_dir
+    if !dir_mounted?
+      create_empty_mount_point
+      mount_encrypted_dir
+      mounted?
+    end
+  end
+
+  def umount_dir
+    if dir_mounted?
+      umount_encrypted_dir
+      remove_empty_mount_point
+    end
+  end
+
+  private
+
+    def mounted?
+      test = <<TEST
+        if [ -e "#{dir_to_mount_full}/.unencrypted" ]; then
+          echo "Is unencrypted? "
+          cat "#{dir_to_mount_full}/.unencrypted"
+        else
+          echo "Did not unencrypt"
+        fi
+TEST
+      system test
+    end
+
+    def mount_encrypted_dir
+      if !dir_mounted?
+        puts "mounting #{encrypted_dir_full} --> #{dir_to_mount_full}"
+        system "sudo mount -t ecryptfs \"#{encrypted_dir_full}\" \"#{dir_to_mount_full}\""
+      end
+    end
+
+    def umount_encrypted_dir
+      if dir_mounted?
+        puts "unmounting #{dir_to_mount_full}"
+        system "sudo umount \"#{dir_to_mount_full}\""
+      end
+    end
+
+    def create_empty_mount_point
+      if !File.exists?(dir_to_mount_full)
+        puts "making directory #{dir_to_mount_full}"
+        exec_cmd(:mkdir_mount)
+      end
+    end
+
+    def remove_empty_mount_point
+      if !dir_mounted?
+        puts "removing empty/unmounted directory #{dir_to_mount_full}"
+        exec_cmd(:rmdir_mount)
+      end
+    end
+
+    def dir_mounted?
+      dir_to_mount && mounted_encrypted_dirs =~ %r{#{dir_to_mount_full}}
+    end
+
+    def user
+      @user ||= `id -un`.strip
+    end
+
+    def crypt_base
+      @crypt_base ||= "/home/private/#{user}"
+    end
+
+    def home_dir
+      @home_dir ||= "/home/#{user}"
+    end
+
+    def mounted_encrypted_dirs
+      `df -t ecryptfs`.strip
+    end
+
+    def crypted_dirs
+      return @crypted_dirs if @crypted_dirs
+
+      @crypted_dirs = []
+      Dir["#{crypt_base}/*"].each do |dir|
+        @crypted_dirs << dir.split("/").last
+      end
+
+      @crypted_dirs = @crypted_dirs.sort
+      @crypted_dirs
+    end
+
+    def dir_to_mount(dir_to_mount = nil)
+      @dir_to_mount = dir_to_mount if dir_to_mount && !dir_to_mount.empty?
+      @dir_to_mount
+    end
+
+    def encrypted_dir_full
+      @encrypted_dir_full ||= "#{crypt_base}/#{dir_to_mount}"
+    end
+
+    def dir_to_mount_full
+      @dir_to_mount_full ||= "#{home_dir}/#{dir_to_mount}"
+    end
+
+    def exec_cmd(cmd)
+      begin
+        case cmd
+        when :mkdir_crypt ; Dir.mkdir(encrypted_dir_full)
+        when :rmdir_crypt ; Dir.rmdir(encrypted_dir_full)
+        when :mkdir_mount ; Dir.mkdir(dir_to_mount_full)
+        when :rmdir_mount ; Dir.rmdir(dir_to_mount_full)
+        end
+      rescue Exception => e
+        puts "Error: #{e}"
+      end
+    end
+end
+
+crypt_dir = CryptDir.new(ARGV.first)

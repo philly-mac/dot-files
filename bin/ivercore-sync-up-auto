@@ -1,0 +1,15 @@
+#!/bin/bash
+
+HOST="ivercore.com"
+USER="philip"
+KEY="/home/philip/.ssh/id_rsa.sync"
+AUTO_POOL="/home/philip/synced/auto/"
+INCLUDE_FILE="/home/philip/Documents/sync/includes"
+BASE="/home/philip"
+INCLUDED="$BASE/.ssh/id_rsa.sync $BASE/.ssh/public_keys/id_rsa.sync.pub $BASE/bin $BASE/*.* $BASE/.purple $BASE/Documents"
+
+rsync -auv \
+    -e "ssh -i $KEY" \
+    $INCLUDED \
+    "$USER@$HOST:$AUTO_POOL"
+

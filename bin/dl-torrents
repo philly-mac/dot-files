@@ -1,0 +1,6 @@
+#!/bin/bash
+
+num_of_torrents=`ls -l ~/Downloads/*.torrent | wc -l`
+mv ~/Downloads/*.torrent /mnt/p3-media/Video/Public/Torrents
+echo "${num_of_torrents} transffered"
+

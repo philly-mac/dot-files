@@ -1,0 +1,7 @@
+#!/bin/bash
+
+killall pidgin
+killall skype
+killall thunderbird-bin
+killall /opt/TweetDeck/bin/TweetDeck
+mail-notification -q

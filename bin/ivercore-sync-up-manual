@@ -1,0 +1,17 @@
+#!/bin/bash
+
+WHAT_TO_SYNC=$1
+HOST="ivercore.com"
+USER="philip"
+KEY="/home/philip/.ssh/id_rsa.sync"
+MANUAL_POOL="/home/philip/synced/manual/"
+
+if [[ -n $WHAT_TO_SYNC ]]; then
+    rsync -auv \
+        -e "ssh -i $KEY" \
+        $WHAT_TO_SYNC \
+        "$USER@$HOST:$MANUAL_POOL"
+else
+    echo "Nothing given to send to central server"
+fi
+

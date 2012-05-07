@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# Put this in your roots crontab
+# min hour * * 0   /path/to/backup/bin/backup/bin/duplicate full true
+# min hour * * 1-6 /path/to/backup/bin/backup/bin/duplicate
+
+source /home/philip/bin/backup/conf/global
+
+if [[ ! -d "$BACKUP_DIR" ]]; then
+    display_message "Failed - $BACKUP_DIR is not mounted"
+    exit 1
+fi
+
+# PREPARE
+
+display_message "Preparing the backup.."
+
+DIRECTORY_CHECK=( $DUMPS_DIR $MYSQL_BACKUP_DIR $POSTGRESQL_BACKUP_DIR $SNAPSHOT_DIR_ENCRYPT $SNAPSHOT_DIR_NORMAL )
+
+# Create the directories to dump useful information if it doesn't exist
+for dir in ${DIRECTORY_CHECK[@]}
+do
+  if [ ! -d "$dir" ]; then
+    display_message "Creating $dir... Done!"
+    mkdir -p $dir
+  fi
+done
+
+if [ "$HOUSE_KEEPING" == 'true' ]; then
+  display_message "House keeping"
+
+  DIRECTORY_CHECK=( $DUMPS_DIR $MYSQL_BACKUP_DIR $POSTGRESQL_BACKUP_DIR )
+
+  # Clear database dumps and crontab file dumps older than 14 days
+  for dir in ${DIRECTORY_CHECK[@]}
+  do
+    display_message "Removing stale files in $dir... Done!"
+    find $dir -mtime +14 -exec rm '{}' \;
+  done
+fi
+
+display_message "Dumping cron data"
+# Dump database and crontab of the root user
+crontab -l > $DUMPS_DIR/crontab-$NOW.txt
+
+display_message "Dumping mysql data... Done!"
+`which mysqldump` > /dev/null
+[[ $? == 0 ]] &&  mysqldump --all-databases -uroot > $MYSQL_BACKUP_DIR/mydatabase-$NOW.sql
+
+display_message "Dumping postgresql data... Done!"
+`which pg_dumpall` > /dev/null
+[[ $? == 0 ]] && pg_dumpall -U postgres -w >  $POSTGRESQL_BACKUP_DIR/postgres-database-$NOW.sql
+
+display_message "End prepare!"
+# END PREPARE
+
+display_message "Backup type: $BACKUP_TYPE"
+
+display_message "Removing any outdated backups"
+duplicity remove-all-but-n-full $NUM_OF_FULL_BACKUPS \
+  --force \
+  --verbosity=5 \
+  ${DEST} >> $BACKUP_LOG
+
+display_message "Backing up encrypted data"
+duplicity $BACKUP_TYPE \
+  --verbosity=5 \
+  --exclude=/home/.ecryptfs \
+  --exclude=/home/philip/.wuala \
+  --exclude=/home/philip/.ecryptfs \
+  --exclude=/home/philip/.gvfs \
+  --exclude=/home/philip/.Private \
+  --exclude=/home/philip/WualaDrive \
+  --exclude=/home/philip/Music \
+  --exclude=/home/philip/Audio \
+  --exclude=/home/philip/Videos \
+  --include=/home \
+  --include=/root \
+  --include=/etc \
+  --include=/usr/local \
+  --include=/opt \
+  --exclude=/** \
+  / ${DEST} >> $BACKUP_LOG
+
+if [[ $BACKUP_TYPE == 'full' ]]; then
+  display_message "Backing up non encrypted data"
+  rsync -auvP --delete \
+    /home/philip/Music \
+    /home/philip/Audio \
+    /home/philip/Videos \
+    $SNAPSHOT_DIR_NORMAL >> $BACKUP_LOG
+fi
+
+
+[[ ! -d $BACKUP_DIR/backup ]] && mkdir $BACKUP_DIR/backup
+
+display_message "Backing up backup program"
+rsync -auvP --delete \
+  --exclude DUPLICITY_PHRASE \
+  $BACKUP_SCRIPTS_DIR \
+  $BACKUP_DIR/ >> $BACKUP_LOG
+
+chown philip:philip $BACKUP_LOG
+
+unset PASSPHRASE
