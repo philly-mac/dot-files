@@ -1,8 +1,6 @@
 *.log
 DUPLICITY_PHRASE
 tmp
-rvm*
-mozilla/firefox/**/Cache
 vim/bundle/*
 vim/sessions/*
 bin/migratemail.sh
