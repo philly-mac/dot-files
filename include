@@ -11,16 +11,11 @@ alias vi='vim'
 
 PATH=$HOME/bin:$PATH
 
-[[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm
-[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"  
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
 
-eval "$(rbfu --init --auto)"
-
-[[ -f ~/.bash/bundler-exec.sh ]] && source ~/.bash/bundler-exec.sh
-
-#pacman -Q ruby 2>&1 > /dev/null
-
-#[[ $? != '0' ]] && sudo pacman -S ruby
+pacman -Q ruby 2>&1 > /dev/null
+[[ $? != '0' ]] && sudo pacman -S ruby
 
 ruby ~/.bash/link_files.rb
 

@@ -1,6 +1,6 @@
 [user]
   name  = Philip MacIver
-  email  = philip@ivercore.com
+  email = philip@ivercore.com
 [color]
   status = auto
   diff = auto
@@ -8,7 +8,6 @@
   interactive = auto
 [merge]
   tool = meld
-  tool = mate -w
   ff   = false
 [core]
   excludesfile     = ~/.gitignore

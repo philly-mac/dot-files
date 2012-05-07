@@ -1,6 +1,7 @@
 #!/bin/bash
 
 num_of_torrents=`ls -l ~/Downloads/*.torrent | wc -l`
-mv ~/Downloads/*.torrent /mnt/p3-media/Video/Public/Torrents
+scp ~/Downloads/*.torrent protonet@node:/home/protonet/Media/video/torrents
+[[ $? == 0 ]] && rm ~/Downloads/*.torrent
 echo "${num_of_torrents} transffered"
 

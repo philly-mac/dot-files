@@ -1,7 +1,7 @@
 #!/bin/bash
 
 [[ -z $1 ]] && \
-  echo "Useage: node mount|umout [force]|remount" && \
+  echo "Useage: my-node mount|umout [force]|remount" && \
   exit 1
 
 #dpkg -l | grep sshfs 2>&1 > /dev/null
@@ -16,7 +16,7 @@ function mount_remote {
   echo 'Mounting..'
   if [[ ! -d $LOCAL_DIR ]]; then
     sudo mkdir $LOCAL_DIR
-    sudo chown -Rf philip:philip $LOCAL_DIR
+    sudo chown -Rf philip:users $LOCAL_DIR
   fi
 
   # TODO: Check if the system is already mounted

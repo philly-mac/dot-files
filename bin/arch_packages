@@ -1,0 +1,22 @@
+#!/bin/bash
+
+[[ -z $1 ]] && \
+  echo "Useage: arch_packages backup|restore" && \
+  exit 1
+
+PACKAGE_FILE_LOCATION="$HOME/Documents/arch_packages.list"
+
+if [[ $1 == 'backup' ]]; then
+  echo "Writing packages list to ${PACKAGE_FILE_LOCATION}"
+  sudo pacman -Qqe > $PACKAGE_FILE_LOCATION
+elif [[ $1 == 'restore' ]]; then
+  if [[ -e $PACKAGE_FILE_LOCATION ]]; then
+    echo "Restoring packages from ${PACKAGE_FILE_LOCATION}"
+    sudo pacman -S `cat $PACKAGE_FILE_LOCATION`
+  else
+    echo "No packages list from which to restore"
+  fi
+else
+  echo "invalid command entered"
+  exit 1
+fi

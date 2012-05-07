@@ -1,1 +1,3 @@
-ssh -ND 9999 philip@ivercore.com
+#!/bin/bash
+
+ssh -vND 9999 philip@ivercore.com

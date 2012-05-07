@@ -3,225 +3,115 @@ filetype off
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 
-" File extension detection switch
-filetype on
+filetype on                                                            " File extension detection switch
 filetype plugin on
-filetype indent on
+filetype indent on                                                     " type of file triggers the FileType event when set
 
-" Set to make sure we don't behave like vi but vim
-set nocompatible
+colorscheme vibrantink                                                 " change the color scheme
 
-" hides buffers instead of closing them
-set hidden
+syntax on                                                              " Turn on syntax highlighting
 
-" change the color scheme
-colorscheme vibrantink
+highlight WhitespaceEOL ctermbg=red guibg=red                          " Show trailing spaces
+match WhitespaceEOL /\s\+$/
 
-"
-filetype plugin on
+" let mapleader = ','                                                   " Change the Leader key
+" let g:toggleTabs = 1                                                 " Display visual tabs when there is more than tab
+let g:ctrlp_working_path_mode = 0                                      " Don't let ctrlp manage working directory
+let g:ctrlp_match_window_bottom = 0                                    " Show ctrlp window at the top
+let g:ctrlp_match_window_reversed = 0                                  " Show ctrlp matches at the top first
 
-" type of file; triggers the FileType event when set
-filetype indent on
-
-" Turn on syntax highlighting
-syntax on
-
-"
-"let g:toggleTabs = 0
-
-" Add autocomplete
-set ofu=syntaxcomplete#Complete
-
-" number of spaces a <Tab> in the text stands for
-set ts=2
-
-" number of spaces used for each step of (auto)indent
-set sw=2
-
-" a <Tab> in an indent inserts 'shiftwidth' spaces
-set sta
-
-" Smart indent
-set si
-
-" automatically set the indent of a new line
-set ai
-
-" automatically read a file when it was modified outside of Vim
-set ar
-
-" Copy whitespace for indenting from previous line
-set ci
-
-" Expand tab to spaces
-set et
-
-" Change the font fro gVim
-set guifont=Monospace
-
-"
+" set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,resize,slash,tabpages,unix,winpos,winsize
+set nocompatible                                                       " Set to make sure we don't behave like vi but vim
+set hidden                                                             " hides buffers instead of closing them
+set ofu=syntaxcomplete#Complete                                        " Add autocomplete
+set visualbell t_vb=                                                   " No audio or visual bell
+set ts=2                                                               " number of spaces a <Tab> in the text stands for
+set sw=2                                                               " number of spaces used for each step of (auto)indent
+set sta                                                                " a <Tab> in an indent inserts 'shiftwidth' spaces
+set si                                                                 " Smart indent
+set ai                                                                 " automatically set the indent of a new line
+set ar                                                                 " automatically read a file when it was modified outside of Vim
+set ci                                                                 " Copy whitespace for indenting from previous line
+set et                                                                 " Expand tab to spaces
+set guifont=Monospace\ 10                                              " Change the font for gVim
+set pastetoggle=<F2>                                                   " Paste toggle
 set anti
-
-" How many item to keep in history list
-set hi=1000
-
-" highlight searches
-set hlsearch
-
-" ignore case when searching
-set ignorecase
-
-" incremental searchshow match for partly typed search command
-set is
-
-" always display the status line
-set laststatus=2
-
-" allways show status line
-set ls=2
-
-" Display line numbers
-set number
-
-" Width of the line number carret
-set nuw=1
-
-" paste mode, insert typed text literally
-set paste
-
-" show the cursor position all the time
-set ruler
-
-" override 'ignorecase' when pattern has upper case characters
-set scs
-
-" how selecting text behaves 'old', 'inclusive' or 'exclusive';
-set sel=inclusive
-
-" when to use a tab pages line. 0, 1 or 2;
-set showtabline=0
-
-" when to start Select mode instead of Visual mode 'mouse', 'key' and/or 'cmd';
-set slm="mouse"
-
-" When inserting a bracket, briefly jump to its match
-"set sm
-
-" many jump commands move the cursor to the first non-blank
-set sol
-
-" Number of spaces to insert for a tab
-set sts=2
-
-" show title in console title bar
-set title
-
-" smoother changes
-set ttyfast
-
-" Number of undos to keep
-set ul=1000
-
-"
+set hi=1000                                                            " How many item to keep in history list
+set hlsearch                                                           " highlight searches
+set ignorecase                                                         " ignore case when searching
+set is                                                                 " incremental searchshow match for partly typed search command
+set laststatus=2                                                       " always display the status line
+set number                                                             " Display line numbers
+set nuw=1                                                              " Width of the line number carret
+set ruler                                                              " show the cursor position all the time
+set scs                                                                " override 'ignorecase' when pattern has upper case characters
+set sel=inclusive                                                      " how selecting text behaves 'old', 'inclusive' or 'exclusive';
+set showtabline=1                                                      " when to use a tab pages line. 0, 1 or 2;
+set slm="mouse"                                                        " when to start Select mode instead of Visual mode 'mouse', 'key' and/or 'cmd';
+set sm                                                                 " When inserting a bracket, briefly jump to its match
+set sol                                                                " many jump commands move the cursor to the first non-blank
+set sts=2                                                              " Number of spaces to insert for a tab
+set title                                                              " show title in console title bar
+set ttyfast                                                            " smoother changes
+set ul=1000                                                            " Number of undos to keep
 set cursorline
-
-" Don't backup
-set nobackup
-
-" Don't create swap files
-set noswapfile
-
-" Git integration
-set shellslash
-
-" Lines don't wrap.
-set nowrap
-
-" Automatic saving on file change
-set autowrite
-
-" Autoreload on file change
-set autoread
-
-" Character encoding / file encoding
-set encoding=utf-8
+set nobackup                                                           " Don't backup
+set noswapfile                                                         " Don't create swap files
+set shellslash                                                         " Use forward slash when expanding file names
+set nowrap                                                             " Lines don't wrap.
+set autowrite                                                          " Automatic saving on file change
+set autoread                                                           " Autoreload on file change
+set encoding=utf-8                                                     " Character encoding / file encoding
 set fileencoding=utf-8
+set noequalalways                                                      " Without setting this, ZoomWin restores windows in a way that causes
+                                                                       " equalalways behavior to be triggered the next time CommandT is used.
+                                                                       " This is likely a bludgeon to solve some other issue, but it works
+set wildignore+=gems/*,*.gif,*.py[co],.git,*.jpg,vendor/*,logs/*,log/* " Ignore gems directory of a project
+set list                                                               " Show special characters
+set listchars=tab:▸\ ,eol:¬,nbsp:.                                     " which special characters to use
+set guioptions-=T                                                      " Start without the toolbar
+set guioptions-=m                                                      " Remove menu bar
 
-if has("autocmd")
-  " Reload the .vimrc when it is saved
-  "autocmd bufwritepost .vimrc source ~/.vimrc
-
-  " Remove trailing spaces when saving
-  autocmd BufWritePre * :%s/\s\+$//e
-
-  " Automatically save the sate of vim when you close it down
-  autocmd VimLeave * :mks ~/.vim/sessions/autosession
-
-  " Start NERDTree in the home directory
-  autocmd VimEnter * :cd ~
-
+if has("gui_running")
+  set statusline=
+  set statusline+=%{fugitive#statusline()}\         "Git branch
+  set statusline+=[%n]\                             "Buffer-Nummer
+  set statusline+=%h                                "Help buffer flag [help]
+  set statusline+=%w                                "Preview window flag [Preview]
+  set statusline+=%m                                "Modified flag, [+] [-]
+  set statusline+=%r                                "Readonly flag [RO]
+  set statusline+=%<%.99f\                          "Am Anfang gekürzt, maximal 99 Zeichen, Dateiname (relativ)
+  set statusline+=%y\                               "Dateityp, z.B [vim], [eruby], [Rails], …
+  set statusline+=[%{strlen(&fenc)?&fenc:'none'}/   "Datei-Codierung, [utf-8]
+  set statusline+=%{&ff}]                           "Datei-Format, [unix]
+  set statusline+=%=                                "Links/Rechts Separator -----------------------
+  set statusline+=Line:\ %l/%L\                     "Zeilennummer/Anzahl der Zeilen
+  set statusline+=[%p%%]\                           "Prozentstand der Datei
+  set statusline+=Column:\ %c-%v                    "Spaltennummer, Virtuelle Spaltennummer
+  set statusline+=\ [%{FileSize()}]\                "Dateigröße
+else
+  set statusline=
+  set statusline+=[%n]\                             "Buffer-Nummer
+  set statusline+=%h                                "Help buffer flag [help]
+  set statusline+=%w                                "Preview window flag [Preview]
+  set statusline+=%m                                "Modified flag, [+] [-]
+  set statusline+=%r                                "Readonly flag [RO]
+  set statusline+=%<%.99f\                          "Am Anfang gekürzt, maximal 99 Zeichen, Dateiname (relativ)
+  set statusline+=%y\                               "Dateityp, z.B [vim], [eruby], [Rails], …
+  set statusline+=[%{strlen(&fenc)?&fenc:'none'}/   "Datei-Codierung, [utf-8]
+  set statusline+=%{&ff}]                           "Datei-Format, [unix]
+  set statusline+=%=                                "Links/Rechts Separator -----------------------
+  set statusline+=Line:\ %l/%L\                     "Zeilennummer/Anzahl der Zeilen
+  set statusline+=[%p%%]\                           "Prozentstand der Datei
+  set statusline+=Column:\ %c-%v                    "Spaltennummer, Virtuelle Spaltennummer
+  set statusline+=\ [%{FileSize()}]\                "Dateigröße
 endif
 
-" Load the last auto saved sessions
-nmap <Leader>s :so ~/.vim/sessions/autosession<CR>
+"
+noremap j <Up>
+noremap k <Down>
 
-" Command-T configuration
-let g:CommandTMaxHeight=20
-map <C-A-o> <esc>:CommandT<cr>
-
-" ZoomWin configuration
-nmap <Leader><Leader> :ZoomWin<CR>
-imap <Leader><Leader> :ZoomWin<CR>
-
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-" Start without the toolbar
-"set guioptions-=T
-
-" Remove menu bar
-"set guioptions-=m
-
-" open up your .vimrc
-nmap <Leader>ev :e ~/.vimrc<CR>
-nmap <Leader>sv :so ~/.vimrc<CR>
-
-" saving
-imap <C-s> <esc>:w<cr>a
-nmap <C-s> :w<cr>
-
-" Delete line
-nmap <C-d> dd
-imap <C-d> <esc>dd<esc>i
-
-" Cut
-vmap <C-x> x
-imap <C-x> <esc>x<esc>i
-nmap <C-x> x
-
-" Copy
-nmap <C-c> y
-imap <C-c> <esc>y
-vmap <C-c> y
-
-" Paste
-imap <C-p> <esc>p<esc>i
-nmap <C-p> p
-vmap <C-p> p
-
-" open NERDTree
-nmap <C-A-n> <esc>:NERDTreeToggle<cr>
-imap <C-A-n> <esc>:NERDTreeToggle<cr>
-
-" Close window
-nmap <C-A-w> <esc>:bd<cr>
-imap <C-A-w> <esc>:bd<cr>
-
+"
 " Window movement
 nmap <silent> <CS-Up> :wincmd k<CR>
 nmap <silent> <CS-Down> :wincmd j<CR>
@@ -233,93 +123,136 @@ imap <silent> <CS-Down> :wincmd j<CR>
 imap <silent> <CS-Left> :wincmd h<CR>
 imap <silent> <CS-Right> :wincmd l<CR>
 
-" Window split horizontal
-nmap <C-A-h> <esc>:split<cr>
-imap <C-A-h> <esc>:split<cr>
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
 
-" Windo split vertical
-nmap <C-A-v> <esc>:vsplit<cr>
-imap <C-A-v> <esc>:vsplit<cr>
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
 
-" Commenting
-nmap <C-A-m> <esc>
-imap <C-A-m> <esc>
+" saving
+imap <C-s> <esc>:w<cr>a
+nmap <C-s> :w<cr>
 
-" vmap <CS-Up> <esc>
-" vmap <CS-Down> <esc>
-" vmap <CS-Left> <esc>
-" vmap <CS-Right> <esc>
-"
+" Delete line
+nmap <C-d> dd
+imap <C-d> <esc>dd<esc>i
 
-" Command-Shift-F for Ack
-nmap <C-k> :Ack<space>
-imap <C-k> :Ack<space>
-
-" Command-e for ConqueTerm
-nmap <C-e> :call StartTerm()<CR>
-imap <C-e> :call StartTerm()<CR>
-
-" Command-][ to increase/decrease indentation
+" Control-][ to increase/decrease indentation
 vmap <C-]> >gv
 vmap <C-[> <gv
 
 " Undo
-nmap <silent> <C-z> <ESC>:undo<CR>
+nmap <silent> <C-z> :undo<CR>
 imap <silent> <C-z> <ESC>:undo<CR>i
 
-" Redo
-nmap <silent><C-A-z> <ESC>:redo<CR>
-imap <silent><C-A-z> <ESC>:redo<CR>i
+" Recent Buffer Menu
+nnoremap <C-Tab> :CtrlPMRU<CR>
+inoremap <C-Tab> <ESC>:CtrlPMRU<CR>
 
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
+" Close current buffer
+nmap <C-w> :Bclose<CR>
+imap <C-w> <esc>:Bclose<CR><esc>i
 
-" Ignore gems directory of a project for CommandT
-set wildignore+=gems/*,*.gif,*.py[co],.git,*.jpg,vendor/*,logs/*,log/*
+nmap <C-q> :wqa<cr>
+imap <C-q> <esc>:wqa<cr>
 
-" Show special characters
-set list
+" Toggle NERDTree
+nmap <C-n> :NERDTreeToggle<cr>
+imap <C-n> <esc>:NERDTreeToggle<cr>
 
-" which special characters to use
-set listchars=tab:▸\ ,eol:¬
+nmap <Leader>b :CtrlPBuffer<cr>
+imap <Leader>b <esc>:CtrlPBuffer<cr>
 
-" Show trailing spaces
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
+" Load the last auto saved sessions
+"nmap <Leader>s :so ~/.vim/sessions/autosession<CR>
+
+" ZoomWin configuration
+nmap <Leader><Leader> :ZoomWin<CR>
+imap <Leader><Leader> :ZoomWin<CR>
+
+" open up your .vimrc
+nmap <Leader>ev :e ~/.vimrc<CR>
+
+" Source (reload) .vimrc
+nmap <Leader>sv :so ~/.vimrc<CR>
+
+" open NERDTree
+nmap <Leader>n :NERDTreeToggle<cr>
+imap <Leader>n <esc>:NERDTreeToggle<cr>
+
+" Window split horizontal
+nmap <Leader>h :split<cr>
+imap <Leader>h <esc>:split<cr>
+
+" Window split vertical
+nmap <Leader>v <esc>:vsplit<cr>
+imap <Leader>v <esc>:vsplit<cr>
+
+" Commenting
+vmap <Leader>m <Leader>c<space>
+nmap <Leader>m <Leader>c<space>
+imap <Leader>m <esc><Leader>c<space>
 
 " Clear highlight searchs
 nmap <silent> <Leader>/ :nohlsearch<CR>
 
-" This should you all of the syntax highlight groups
-" :source $VIMRUNTIME/syntax/hitest.vim
-
-" SuperTab completion
-inoremap <C-Space> <C-x><C-p>
-
-" Omni Completion
-inoremap <Leader>p <C-x><C-o>
-
 " Execute a NERDTreeFind whenever a file is opened
-"noremap <Leader>f :NERDTreeFind<CR>
-inoremap <Leader>f <ESC>:NERDTreeFind<CR>
-nnoremap <Leader>f <ESC>:NERDTreeFind<CR>
-
-" Recent Buffer Menu
-nnoremap <C-Tab> :BufExplorer<CR>
-inoremap <C-Tab> <ESC>:BufExplorer<CR>i
+inoremap <Leader>nf <ESC>:NERDTreeFind<CR>
+nnoremap <Leader>nf <ESC>:NERDTreeFind<CR>
 
 " Large Recent buffer ment
 nnoremap <Leader>l :MRU<CR>
-inoremap <Leader>l :MRU<CR>
-
-" Adding stuff to the menu bar
-":amenu ToolBar.Hello :echo 'hello'<CR>
-"
+inoremap <Leader>l <esc>:MRU<CR>
 
 " Refresh all buffers from disk
 nmap <Leader>r :set noconfirm<CR>:bufdo e!<CR>:set confirm<CR>:syntax on<CR>
+
+" Search through all files
+nmap <Leader>f :Ack<space>
+imap <Leader>f <ESC>:Ack<space>
+
+" SuperTab completion
+inoremap <C-Space> <C-n>
+
+" SuperTab completion
+"inoremap <C-Space> <C-x><C-p>
+
+" Copy selected text into global buffer
+vmap <Leader>c "+ygv
+
+" Cut selected text into global buffer
+vmap <Leader>x "+x
+
+" Paste from global buffer
+nmap <Leader>p "+gP
+imap <Leader>p "+gP
+
+" Toggle Gundo list
+nnoremap <F5> :GundoToggle<CR>
+
+if has("autocmd")
+  augroup vimrc_autocmds
+    " clear auto commands
+    au!
+    " Reload the .vimrc when it is saved
+    autocmd bufwritepost .vimrc source $MYVIMRC
+
+    " Remove trailing spaces when saving
+    autocmd BufWritePre * :%s/\s\+$//e
+
+    " Automatically save the state of vim when you close it down
+    autocmd VimLeave * :!rm ~/.vim/sessions/autosession
+    autocmd VimLeave * :mks ~/.vim/sessions/autosession
+
+    " Start NERDTree in the home directory
+    autocmd VimEnter * :cd ~
+    autocmd VimEnter * :NERDTree
+
+    autocmd VimEnter * set vb t_vb=
+  augroup END
+endif
 
 if has("gui_running")
   " find
@@ -335,3 +268,16 @@ else
   nmap <C-h> <esc>:%s/old/new/gc
 endif
 
+function! FileSize()
+  let bytes = getfsize(expand("%:p"))
+  if bytes <= 0
+    return ""
+  endif
+  if bytes < 1024
+    return bytes . " B"
+  elseif bytes < 1000000
+    return (bytes / 1024) . " KB"
+  else
+    return (bytes / 1000000) . " MB"
+  endif
+endfunction

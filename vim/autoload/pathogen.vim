@@ -1,0 +1,1 @@
+../pathogen.vim/plugin/pathogen.vim
