@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+<!-- Author(s): Vlad Seryakov vseryakov@gmail.com -->
+<COMMANDO>
+    <UI>
+        <CAPTION LABEL="Maven Settings">
+            <FILE_ENTRY LABEL="Command to run" VARNAME="cmd" DEFAULT='mvn' />
+            <DIR_ENTRY LABEL="Build in" VARNAME="home" DEFAULT='' />
+            <ENTRY LABEL="Goal(s)" VARNAME="goal"/>
+            <TOGGLE LABEL="Fast Scala Compiler" VARNAME="fsc" />
+        </CAPTION>
+    </UI>
+    <COMMANDS>
+        <COMMAND CONFIRM="FALSE" SHELL="System">
+             jEdit.saveAllBuffers(view, false);
+            if (home.length() > 0) return "cd " + home; else return "cd " + buffer.getDirectory();
+        </COMMAND>
+
+        <COMMAND SHELL="System" CONFIRM="FALSE">
+            buf = new StringBuffer();
+
+            if (cmd.length() > 0) 
+                buf.append(cmd + " ");
+
+            if (fsc) 
+                buf.append(" -Donce scala:cc ");
+            else
+            if (goal.length() == 0) 
+                buf.append(" scala:compile ");
+
+            if (goal.length() > 0) 
+                buf.append(" ").append(goal);
+
+            buf.toString()
+        </COMMAND>
+    </COMMANDS>
+</COMMANDO>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+<!-- Author(s): Vlad Seryakov vseryakov@gmail.com -->
+<COMMANDO>
+    <UI>
+        <CAPTION LABEL="Build Settings">
+            <FILE_ENTRY LABEL="Command to run" VARNAME="cmd" DEFAULT='' />
+            <DIR_ENTRY LABEL="Build in" VARNAME="home" DEFAULT='' />
+            <TOGGLE LABEL="Current dir" VARNAME="curdir" />
+        </CAPTION>
+    </UI>
+    <COMMANDS>
+        <COMMAND CONFIRM="FALSE" SHELL="System">
+            jEdit.saveAllBuffers(view, false);
+            if (curdir) home = "";
+            if (home.length() == 0) home = buffer.getDirectory();
+            return "cd " + home;
+        </COMMAND>
+
+        <COMMAND SHELL="System" CONFIRM="FALSE">
+            buf = new StringBuffer();
+            if (cmd.length() > 0) buf.append(cmd);
+            buf.toString()
+        </COMMAND>
+    </COMMANDS>
+</COMMANDO>

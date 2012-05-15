@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+<!-- Author(s): Vlad Seryakov -->
+<COMMANDO>
+    <UI>
+        <DIR_ENTRY LABEL="Project path" VARNAME="projectpath"/>
+           
+        <CAPTION LABEL="Custom settings">
+        <DIR_ENTRY LABEL="Classes path" VARNAME="classespath"/>
+        <DIR_ENTRY LABEL="Webapp root" VARNAME="webpath" />
+        <DIR_ENTRY LABEL="HTTP Port" VARNAME="port" DEFAULT="8080"/>
+        </CAPTION>
+            
+        <CAPTION LABEL="Global settings">
+        <DIR_ENTRY LABEL="Jar path" VARNAME="jarpath" />
+        </CAPTION>
+    </UI>
+    <COMMANDS>
+        <COMMAND SHELL="BeanShell" CONFIRM="FALSE">
+            jEdit.saveAllBuffers(view, false);
+
+            if (webpath.length() == 0) {
+                if (projectpath.length() > 0) {
+                    webpath = projectpath + File.separator + "webapp";
+                } else {
+                    webpath = buffer.getDirectory();
+                }
+            }
+            if (classespath.length() == 0) {
+                if (projectpath.length() > 0) { 
+                    classespath = projectpath + File.separator + "classes";
+                } else {
+                    classespath = buffer.getDirectory();
+                }
+            }
+            if (jarpath.length() == 0) {
+                jarpath = "";
+            }
+            return "scalac.jetty.start(" + port + ",\"" + webpath + "\",\"" + classespath + "\",\"" + jarpath + "\")";
+        </COMMAND>
+    </COMMANDS>
+</COMMANDO>

@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<!DOCTYPE KILLRING SYSTEM "killring.dtd">
+<KILLRING>
+<ENTRY>t</ENTRY>
+<ENTRY>telephones</ENTRY>
+<ENTRY>  private
+</ENTRY>
+<ENTRY> pri </ENTRY>
+<ENTRY>*</ENTRY>
+<ENTRY>/</ENTRY>
+<ENTRY>haml</ENTRY>
+<ENTRY>{</ENTRY>
+<ENTRY>}</ENTRY>
+<ENTRY>""</ENTRY>
+<ENTRY>def</ENTRY>
+<ENTRY>  it 'reindexes' do
+    @locum.update :first_name =&gt; "#{@locum.first_name}#{@locum.first_name}"
+</ENTRY>
+<ENTRY>    it 'reindexes' do
+      @locum.update :first_name =&gt; "#{@locum.first_name}#{@locum.first_name}"
+</ENTRY>
+<ENTRY>  it 'reindexes' do
+</ENTRY>
+<ENTRY>    it 'reindexes' do
+</ENTRY>
+<ENTRY>,sass</ENTRY>
+<ENTRY>haml,html.haml,</ENTRY>
+<ENTRY>/*</ENTRY>
+</KILLRING>
