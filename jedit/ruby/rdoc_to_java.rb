@@ -140,7 +140,7 @@ class JavaXmlSerializer
 
     description.constants.each do |c|
       c.html_comment = convert_comment(c.comment)
-      c.value = normalize(c.value).gsub('�','')
+      c.value = normalize(c.value).gsub('???','')
     end if description.constants
 
     description
