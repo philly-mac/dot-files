@@ -1,5 +1,5 @@
 #jEdit properties
-#Tue May 15 19:30:54 CEST 2012
+#Wed May 16 05:52:39 CEST 2012
 buffer.maxLineLen=0
 useMD5forDirtyCalculation=false
 buffertabs.closeButton=true
@@ -62,6 +62,7 @@ status.errorWidget.y=0
 status.errorWidget.x=50
 recentbufferswitcher.shortcut=C+TAB
 buffer.tabSize=2
+print.shortcut=
 openfilefastdockable.extendedState=0
 firewall.user=
 restore.remote=false
@@ -100,7 +101,7 @@ buffertabs.color-mute=false
 fallbackEncodings=
 view.eolMarkers=true
 hypersearch-results.dock-position=floating
-options.last=syntax
+options.last=shortcuts
 white-space.show-whitespace-default=true
 fastopen.shortcut=C+y
 goto-marker.shortcut=
@@ -137,7 +138,7 @@ plugin-manager.x=0
 Editing/Move_Lines_Up.shortcut=CS+UP
 vfs.browser.dialog.y=50
 vfs.browser.dialog.x=50
-options.shortcuts.select.index=13
+options.shortcuts.select.index=12
 view.showBufferSwitcher=false
 appearance.continuousLayout=false
 fastopen.sortFiles=false
@@ -181,7 +182,7 @@ vfs.browser.modified.width=100
 view.gutter.selectionAreaBgColor=\#dbdbdb
 options.abbrevs.combobox.index=0
 buffertabs.color-foreground=true
-openfilefastdockable-toggle.shortcut=C+t
+openfilefastdockable-toggle.shortcut=C+p
 task-monitor.dock-position=floating
 white-space.remove-trailing-white-space=true
 view.fgColor=\#fefefe

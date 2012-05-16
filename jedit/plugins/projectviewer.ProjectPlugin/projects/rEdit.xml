@@ -3,13 +3,6 @@
 <project path="/home/philip/Projects/rEdit">
 <property name="projectviewer.folder_tree_state" value="1010110001000000000000" />
 <property name="projectviewer.import.filterid" value="projectviewer.importer.GlobFilter" />
-<open-file path="/home/philip/Projects/rEdit/lib/r_edit/models/app.rb" />
-<open-file path="/home/philip/Projects/rEdit/lib/r_edit/base.rb" />
-<open-file path="/home/philip/Projects/rEdit/lib/r_edit/gui/buffer.rb" />
-<open-file path="/home/philip/Projects/rEdit/lib/r_edit/models/buffer.rb" />
-<open-file path="/home/philip/Projects/rEdit/lib/r_edit.rb" />
-<open-file path="/home/philip/Projects/rEdit/test.rb" />
-<open-file path="/home/philip/Projects/rEdit/base_install.sh" />
 <directory path="/home/philip/Projects/rEdit/bin">
 <file path="/home/philip/Projects/rEdit/bin/rEdit" />
 </directory>

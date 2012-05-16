@@ -20,13 +20,16 @@ hh
 user
 user.rb
 [action]
-exit
-select-none
-find
+global-options
+openfilefastdockable-toggle
+save
 recentbufferswitcher
 print
-save
-openfilefastdockable-toggle
+undo
+select-none
+close-buffer
+exit
+find
 backspace
 next-char
 delete
@@ -37,9 +40,6 @@ end
 copy
 select-end
 delete-line
-finishhim.execute
-next-line
-plugin-options
 [clipboard]
 :telephones => self.telephones.map{|t| t.values}
 <MODE NAME=\"haml\" FILE=\"haml.xml\" FILE_NAME_GLOB=\"*.{haml,html.haml,sass}\" />
