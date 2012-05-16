@@ -1,0 +1,54 @@
+[replace]
+  
+hh
+[vfs.browser.path]
+/home/philip/Projects/rEdit
+/home/philip/Projects
+/home/philip/Projects/optomlocum.com
+/home/philip/Projects/old
+/home/philip/.jedit/modes
+/home/philip/.jedit
+/home/philip
+/home/philip/Projects/optomlocum.com/app/views/bookings
+/home/philip/Projects/optomlocum.com/app/views/users
+/home/philip/Projects/optomlocum.com/spec/models
+[search.filter]
+*.rb
+[vfs.browser.filter]
+*\[^~#\]
+[fastopen.patterns]
+user
+user.rb
+[action]
+global-options
+openfilefastdockable-toggle
+save
+recentbufferswitcher
+print
+undo
+select-none
+close-buffer
+exit
+find
+backspace
+next-char
+delete
+SuperAbbrevs.tab
+paste
+insert-newline-indent
+end
+copy
+select-end
+delete-line
+[clipboard]
+:telephones => self.telephones.map{|t| t.values}
+<MODE NAME=\"haml\" FILE=\"haml.xml\" FILE_NAME_GLOB=\"*.{haml,html.haml,sass}\" />
+<MODE NAME=\"haml\" FILE=\"haml.xml\" FILE_NAME_GLOB=\"*.haml\" />
+    it \'reindexes\' do\n      @locum.update :first_name => \"#{@locum.first_name}#{@locum.first_name}\"\n
+  it \'reindexes\' do\n    @locum.update :first_name => \"#{@locum.first_name}#{@locum.first_name}\"\n
+    it \'reindexes\' do\n
+  it \'reindexes\' do\n
+[find]
+\\t
+[search.directory]
+/home/philip/Projects/optomlocum.com/spec/models/

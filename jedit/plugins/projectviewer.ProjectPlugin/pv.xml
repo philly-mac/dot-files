@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<projects name="All Projects" >
+<project name="optomlocum.com" file="optomlocum.com.xml" root="/home/philip/Projects/optomlocum.com"  />
+<project name="rEdit" file="rEdit.xml" root="/home/philip/Projects/rEdit"  />
+</projects>

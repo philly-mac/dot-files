@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE MODES SYSTEM "catalog.dtd">
+
+<MODES>
+  <MODE NAME="scala" FILE="scala.xml" FILE_NAME_GLOB="*.scala" />
+  <MODE NAME="haml" FILE="haml.xml" FILE_NAME_GLOB="*.{haml,html.haml}" />
+  <MODE NAME="sass" FILE="sass.xml" FILE_NAME_GLOB="*.{sass}" />
+</MODES>

@@ -9,6 +9,7 @@ files = [
   ["#{base}/pryrc",     "#{home}/.pryrc"],
   ["#{base}/railsrc",   "#{home}/.railsrc"],
   ["#{base}/vim",       "#{home}/.vim"],
+  ["#{base}/jedit",       "#{home}/.jedit"],
 ]
 
 files.each do |file, linked_file|

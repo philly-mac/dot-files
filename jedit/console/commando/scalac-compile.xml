@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+<!-- Author(s): Vlad Seryakov -->
+<COMMANDO>
+    <UI>
+        <DIR_ENTRY LABEL="Project path" VARNAME="projectpath"/>
+            
+        <CAPTION LABEL="Custom settings">
+        <DIR_ENTRY LABEL="Classes path" VARNAME="classpath"/>
+        <DIR_ENTRY LABEL="Sources path" VARNAME="scalapath"/>
+        <DIR_ENTRY LABEL="Output path" VARNAME="outputpath"/>
+        </CAPTION>
+            
+        <CAPTION LABEL="Global settings">
+        <DIR_ENTRY LABEL="Jar path" VARNAME="jarpath" />
+        </CAPTION>
+    </UI>
+    <COMMANDS>
+        <COMMAND SHELL="System" CONFIRM="FALSE">
+            if (projectpath.length() > 0) {
+                return "cd " + projectpath;
+            }
+            return "cd " + buffer.getDirectory();
+        </COMMAND>
+
+        <COMMAND SHELL="BeanShell" CONFIRM="FALSE">
+            jEdit.saveAllBuffers(view, false);
+            buf = new StringBuffer();
+            buf.append("scalac.compiler.run(\"");
+
+            if (scalapath.length() > 0) {
+                buf.append(" -scalapath " + scalapath);
+            } else {
+                buf.append(" -scalapath " + buffer.getDirectory());
+            }
+            if (jarpath.length() > 0) {
+                buf.append(" -jarpath " + jarpath);
+            }
+            if (classpath.length() > 0) {
+                buf.append(" -classpath " + classpath);
+            }
+            if (outputpath.length() > 0) {
+                (new File(outputpath)).mkdirs();
+                buf.append(" -d " + outputpath);
+            } else
+            if (projectpath.length() > 0) {
+                path = projectpath + File.separator + "classes";
+                (new File(path)).mkdirs();
+                buf.append(" -d " + path);
+            } else {
+                buf.append(" -d " + buffer.GetDirectory());
+            }
+            buf.append("\")");
+            buf.toString()
+        </COMMAND>
+    </COMMANDS>
+</COMMANDO>

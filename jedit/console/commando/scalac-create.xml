@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+<!-- Author(s): Vlad Seryakov -->
+<COMMANDO>
+    <UI>
+       <CAPTION LABEL="Create new LiftWeb project">
+         <DIR_ENTRY LABEL="Project path" VARNAME="projectpath"/>
+       </CAPTION>
+    </UI>
+    <COMMANDS>
+        <COMMAND SHELL="BeanShell" CONFIRM="FALSE">
+            jEdit.saveAllBuffers(view, false);
+
+            if (projectpath.length() == 0) {
+                return "";
+            }
+            return "scalac.compiler.create(\"" + projectpath + "\")";
+        </COMMAND>
+    </COMMANDS>
+</COMMANDO>
