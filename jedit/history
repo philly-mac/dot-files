@@ -2,13 +2,15 @@
   
 hh
 [vfs.browser.path]
+/home/philip/.bash
+/home/philip
+/home/philip/Projects/optomlocum.com
+/home/philip/Projects/optomlocum.com/config
 /home/philip/Projects/rEdit
 /home/philip/Projects
-/home/philip/Projects/optomlocum.com
 /home/philip/Projects/old
 /home/philip/.jedit/modes
 /home/philip/.jedit
-/home/philip
 /home/philip/Projects/optomlocum.com/app/views/bookings
 /home/philip/Projects/optomlocum.com/app/views/users
 /home/philip/Projects/optomlocum.com/spec/models
@@ -20,27 +22,38 @@ hh
 user
 user.rb
 [action]
-global-options
+exit
+plugin-options
+toggle-buffer-switcher
+view-markers
+goto-marker
 openfilefastdockable-toggle
+editor-scheme-selector
+plugin-manager
+close-buffer
 save
-recentbufferswitcher
-print
 undo
 select-none
-close-buffer
-exit
-find
-backspace
-next-char
-delete
-SuperAbbrevs.tab
 paste
-insert-newline-indent
-end
-copy
-select-end
+Clipboard/Copy_Lines
+prev-line
+next-line
+global-options
+offwindow.show
 delete-line
+recentbufferswitcher
 [clipboard]
+      current_path.should == OptomLocum.url(:locums, :index)\n 
+    describe \"booking transitions\" do\n\n
+:bonus_description  => \"&pound;50 a day for every 100 sales\",
+Dir\[\"#{Padrino.root(\'app/searchers/*\')}\"\].each {|f| require f}
+git://github.com/padrino/padrino-framework.git
+865d67c414290aa6a596cd1f478b205996abae08
+gem \'padrino\', \'0.10.6\'
+:git => \"git://github.com/rails/rails.git\", :ref => \"4aded\"
+\[\"#{base}/vim\",       \"#{home}/.vim\"\],
+puts \"HERE 1\"
+File.expand_path(\'../../config/boot\', __FILE__)
 :telephones => self.telephones.map{|t| t.values}
 <MODE NAME=\"haml\" FILE=\"haml.xml\" FILE_NAME_GLOB=\"*.{haml,html.haml,sass}\" />
 <MODE NAME=\"haml\" FILE=\"haml.xml\" FILE_NAME_GLOB=\"*.haml\" />
@@ -49,6 +62,9 @@ delete-line
     it \'reindexes\' do\n
   it \'reindexes\' do\n
 [find]
+Store::Searcher
+pry
+p
 \\t
 [search.directory]
 /home/philip/Projects/optomlocum.com/spec/models/
