@@ -1,6 +1,6 @@
 #jEdit Editor Scheme
 #:mode=properties:lineSeparator=\n:
-#Wed May 16 07:58:41 CEST 2012
+#Wed May 16 11:43:18 CEST 2012
 view.style.keyword2=color\:\#009966 style\:b
 view.style.keyword1=color\:\#de8607 style\:b
 view.style.literal4=color\:\#6600cc

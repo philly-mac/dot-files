@@ -9,3 +9,9 @@ vim/.rvmrc
 vim/pathogen.vim
 vim/.netrwhist
 jedit/settings-backup
+jedit/jars-cache
+jedit/history
+jedit/killring.xml
+jedit/perspective.xml
+jedit/plugins/projectviewer.ProjectPlugin/*
+jedit/recent.xml
