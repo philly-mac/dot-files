@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<!DOCTYPE KILLRING SYSTEM "killring.dtd">
+<KILLRING>
+<ENTRY>haml,html.haml,</ENTRY>
+<ENTRY>/*</ENTRY>
+<ENTRY>puts File.expand_path('../../config/boot', __FILE__)</ENTRY>
+<ENTRY>1</ENTRY>
+<ENTRY>5</ENTRY>
+<ENTRY>2</ENTRY>
+<ENTRY>vim</ENTRY>
+<ENTRY>  # gem 'pry'
+</ENTRY>
+<ENTRY>4aded</ENTRY>
+<ENTRY>git://github.com/rails/rails.git</ENTRY>
+<ENTRY>'0.10.6'</ENTRY>
+<ENTRY>#</ENTRY>
+<ENTRY>''</ENTRY>
+<ENTRY>do</ENTRY>
+<ENTRY>|</ENTRY>
+<ENTRY>searchers</ENTRY>
+<ENTRY>.id</ENTRY>
+<ENTRY>"&amp;pound;50 a day for every 100 sales"</ENTRY>
+<ENTRY>_description</ENTRY>
+<ENTRY>        puts "BOOKING #{@booking.errors.inspect}"
+</ENTRY>
+</KILLRING>

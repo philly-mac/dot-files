@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE PERSPECTIVE SYSTEM "perspective.dtd">
+<PERSPECTIVE>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/app.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/models/invoice.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/controllers/invoices.rb</BUFFER>
+<VIEW PLAIN="FALSE">
+<PANES>
+"/home/philip/Projects/optomlocum.com/app/app.rb" buffer "/home/philip/Projects/optomlocum.com/app/app.rb" buff "/home/philip/Projects/optomlocum.com/app/models/invoice.rb" buff "/home/philip/Projects/optomlocum.com/app/controllers/invoices.rb" buff "global" bufferset
+</PANES>
+<GEOMETRY X="1816" Y="90" WIDTH="1592" HEIGHT="872" EXT_STATE="6" />
+</VIEW>
+</PERSPECTIVE>
