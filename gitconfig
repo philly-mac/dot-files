@@ -24,3 +24,5 @@
   cp = cherry-pick
   b  = branch
   pr = pull --rebase
+[push]
+	default = current

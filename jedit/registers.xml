@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE REGISTERS SYSTEM "registers.dtd">
 <REGISTERS>
-<REGISTER NAME="_">    it 'reindexes' do
-      @locum.update :first_name =&gt; "#{@locum.first_name}#{@locum.first_name}"
+<REGISTER NAME="_">require 'dawanda_search/mocks/product'
 </REGISTER>
 </REGISTERS>
