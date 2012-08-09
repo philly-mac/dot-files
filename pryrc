@@ -13,6 +13,4 @@ Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} >
 
 require 'hirb'
 
-
-
 #load File.dirname(__FILE__) + '/.railsrc' if defined?(Rails) && Rails.env

@@ -10,6 +10,7 @@ alias g='git'
 alias vi='vim'
 
 PATH=$HOME/bin:$PATH
+RUBYOPT=""
 
 RUBYOPT=""
 
@@ -20,5 +21,4 @@ ruby ~/.bash/link_files.rb
 
 ps1_set --prompt '\$' --notime
 
-
-export PATH RUBYOPT
+export RUBYOPT PATH
