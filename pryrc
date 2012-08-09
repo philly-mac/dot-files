@@ -1,27 +1,18 @@
-# vim FTW
-Pry.config.editor = "sublime-text"
+Pry.config.editor = "subl"
 
-# My pry is polite
-Pry.hooks = { :after_session => proc { puts "bye-bye" } }
+Pry.config.hooks.add_hook(:before_session, :say_hi) do
+  puts "hello"
+end
+
+Pry.config.hooks.add_hook(:after_session, :say_bye) do
+  puts "Goodbye and God bless"
+end
 
 # Prompt with ruby version
 Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
 
-%w{map_by_method hirb}.each { |gem| require gem }
+require 'hirb'
 
-# Toys methods
-# Stealed from https://gist.github.com/807492
-class Array
-  def self.toy(n=10, &block)
-    block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
-  end
-end
 
-class Hash
-  def self.toy(n=10)
-    Hash[Array.toy(n).zip(Array.toy(n){|c| (96+(c+1)).chr})]
-  end
-end
 
-# loading rails configuration if it is running as a rails console
-load File.dirname(__FILE__) + '/.railsrc' if defined?(Rails) && Rails.env
+#load File.dirname(__FILE__) + '/.railsrc' if defined?(Rails) && Rails.env

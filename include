@@ -11,12 +11,14 @@ alias vi='vim'
 
 PATH=$HOME/bin:$PATH
 
+RUBYOPT=""
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
-
-pacman -Q ruby 2>&1 > /dev/null
-[[ $? != '0' ]] && sudo pacman -S ruby
 
 ruby ~/.bash/link_files.rb
 
 ps1_set --prompt '\$' --notime
+
+
+export PATH RUBYOPT

@@ -2,43 +2,48 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-inoremap <silent> <SNR>37_yrrecord =YRRecord3()
-inoremap <silent> <Plug>NERDCommenterInInsert  <BS>:call NERDComment(0, "insert")
 inoremap <silent> <S-Tab> =BackwardsSnippet()
 imap <silent> <F8> <Plug>InsShowScratchBuffer
-inoremap <C-Space> 
+inoremap <silent> <Plug>delimitMateMRightMouse =delimitMate#Finish(1)<RightMouse>
+inoremap <silent> <Plug>delimitMateMLeftMouse =delimitMate#Finish(1)<LeftMouse>
+inoremap <silent> <Plug>delimitMateDel =delimitMate#Del()
+inoremap <silent> <Plug>delimitMateS-Tab =delimitMate#JumpAny("\<S-Tab>")
+inoremap <silent> <Plug>delimitMateSpace =delimitMate#ExpandSpace()
+inoremap <silent> <Plug>delimitMateCR =delimitMate#ExpandReturn()
+inoremap <silent> <expr> <Plug>delimitMateS-BS delimitMate#WithinEmptyPair() ? "\=delimitMate#Del()\" : "\<S-BS>"
+inoremap <silent> <Plug>delimitMateBS =delimitMate#BS()
+inoremap <silent> <Plug>delimitMate` =delimitMate#QuoteDelim("\`")
+inoremap <silent> <Plug>delimitMate' =delimitMate#QuoteDelim("\'")
+inoremap <silent> <Plug>delimitMate" =delimitMate#QuoteDelim("\"")
+inoremap <silent> <Plug>delimitMate] =delimitMate#JumpOut("\]")
+inoremap <silent> <Plug>delimitMate} =delimitMate#JumpOut("\}")
+inoremap <silent> <Plug>delimitMate) =delimitMate#JumpOut("\)")
+inoremap <silent> <Plug>delimitMate[ [=delimitMate#ParenDelim("]")
+inoremap <silent> <Plug>delimitMate{ {=delimitMate#ParenDelim("}")
+inoremap <silent> <Plug>delimitMate( (=delimitMate#ParenDelim(")")
+inoremap <silent> <SNR>20_yrrecord =YRRecord3()
+inoremap <silent> <Plug>NERDCommenterInInsert  <BS>:call NERDComment(0, "insert")
+inoremap <C-Space> 
+inoremap <C-Tab> 	
 imap <silent> <C-S-Right> :wincmd l
 imap <silent> <C-S-Left> :wincmd h
 imap <silent> <C-S-Down> :wincmd j
 imap <silent> <C-S-Up> :wincmd k
-imap <C-Tab> :BufExplorer
-map! <S-Insert> <MiddleMouse>
-vmap  y
-nmap  y
 nmap  dd
-nmap  :call StartTerm()
-nmap <silent>  :promptfind
-nmap <silent>  :promptrepl
+nmap  :%s/old/new/gc
 snoremap <silent> 	 i<Right>=TriggerSnippet()
-nmap  :Ack 
 nnoremap <silent>  :YRReplace '1', 'p'
-nnoremap <silent>  :YRReplace '-1', 'P'
+nnoremap <silent>  :CtrlP
+nmap  :wqa
 nmap  :w
-vmap  p
-nmap  :vsplit
 nmap o <Plug>ZoomWin
+nmap  :Bclose
 snoremap  b<BS>
-nmap  x
-xmap  x
-nmap <silent>  :undo
+nmap <silent>  :undo
 vmap  <gv
 vmap  >gv
 snoremap % b<BS>%
 snoremap ' b<BS>'
-imap <silent>  :redoi
-imap  
-imap  :q
-imap  :NERDTree
 xnoremap <silent> P :YRPaste 'P', 'v'
 nnoremap <silent> P :YRPaste 'P'
 xmap S <Plug>VSurround
@@ -64,7 +69,9 @@ nmap <silent> [B <Plug>unimpairedBFirst
 nmap <silent> [b <Plug>unimpairedBPrevious
 nmap <silent> [A <Plug>unimpairedAFirst
 nmap <silent> [a <Plug>unimpairedAPrevious
+vmap [% [%m'gv``
 snoremap \ b<BS>\
+map \<F2> :call HexHighlight()
 nmap \ca <Plug>NERDCommenterAltDelims
 vmap \cA <Plug>NERDCommenterAppend
 nmap \cA <Plug>NERDCommenterAppend
@@ -90,12 +97,24 @@ vmap \c  <Plug>NERDCommenterToggle
 nmap \c  <Plug>NERDCommenterToggle
 vmap \cc <Plug>NERDCommenterComment
 nmap \cc <Plug>NERDCommenterComment
-map \<F2> :call HexHighlight()
+nnoremap <silent> \bd :Bclose
+nmap \p "+gP
+vmap \x "+x
+vmap \c "+ygv
+nmap \f :Ack 
+nmap \r :set noconfirm:bufdo e!:set confirm:syntax on
+nnoremap \l :MRU
+nnoremap \nf :NERDTreeFind
 nmap <silent> \/ :nohlsearch
+nmap \m \c 
+vmap \m \c 
+nmap \v :vsplit
+nmap \h :split
+nmap \n :NERDTreeToggle
 nmap \sv :so ~/.vimrc
 nmap \ev :e ~/.vimrc
 nmap \\ :ZoomWin
-nmap \s :so ~/.vim/sessions/autosession
+nmap \b :CtrlPBuffer
 nmap ]xx <Plug>unimpairedLineXmlDecode
 xmap ]x <Plug>unimpairedXmlDecode
 nmap ]x <Plug>unimpairedXmlDecode
@@ -117,31 +136,36 @@ nmap <silent> ]B <Plug>unimpairedBLast
 nmap <silent> ]b <Plug>unimpairedBNext
 nmap <silent> ]A <Plug>unimpairedALast
 nmap <silent> ]a <Plug>unimpairedANext
+vmap ]% ]%m'gv``
 snoremap ^ b<BS>^
 snoremap ` b<BS>`
+vmap a% [%v]%
 nmap cs <Plug>Csurround
-xnoremap <silent> d :YRDeleteRange 'v'
 nmap ds <Plug>Dsurround
+xnoremap <silent> d :YRDeleteRange 'v'
 nmap gx <Plug>NetrwBrowseX
+xmap gS <Plug>VgSurround
 nnoremap <silent> gp :YRPaste 'gp'
 nnoremap <silent> gP :YRPaste 'gP'
-xmap gS <Plug>VgSurround
+nnoremap j <Up>
+vnoremap j <Up>
+nnoremap k <Down>
+vnoremap k <Down>
 xnoremap <silent> p :YRPaste 'p', 'v'
 nnoremap <silent> p :YRPaste 'p'
 xmap s <Plug>Vsurround
 xnoremap <silent> x :YRDeleteRange 'v'
-xnoremap <silent> y :YRYankRange 'v'
 nmap ySS <Plug>YSsurround
 nmap ySs <Plug>YSsurround
 nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
+xnoremap <silent> y :YRYankRange 'v'
 snoremap <Left> bi
 snoremap <Right> a
 snoremap <BS> b<BS>
 snoremap <silent> <S-Tab> i<Right>=BackwardsSnippet()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
-nnoremap <silent> <SNR>37_yrrecord :call YRRecord3()
 xnoremap <silent> <Plug>unimpairedMoveDown :exe 'norm m`'|exe '''<,''>move''>+'.v:count1``
 xnoremap <silent> <Plug>unimpairedMoveUp :exe 'norm m`'|exe '''<,''>move--'.v:count1``
 nnoremap <silent> <Plug>unimpairedMoveDown :exe 'norm m`'|exe 'move+'.v:count1``
@@ -164,6 +188,8 @@ nmap <silent> <Plug>unimpairedALast :exe "last ".(v:count ? v:count : "")
 nmap <silent> <Plug>unimpairedAFirst :exe "first ".(v:count ? v:count : "")
 nmap <silent> <Plug>unimpairedANext :exe "next ".(v:count ? v:count : "")
 nmap <silent> <Plug>unimpairedAPrevious :exe "previous ".(v:count ? v:count : "")
+nmap <silent> <F8> <Plug>ShowScratchBuffer
+nnoremap <silent> <SNR>20_yrrecord :call YRRecord3()
 nmap <silent> <Plug>NERDCommenterAppend :call NERDComment(0, "append")
 nnoremap <silent> <Plug>NERDCommenterToEOL :call NERDComment(0, "toEOL")
 vnoremap <silent> <Plug>NERDCommenterUncomment :call NERDComment(1, "uncomment")
@@ -186,38 +212,38 @@ vnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment(1, "toggle")
 nnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment(0, "toggle")
 vnoremap <silent> <Plug>NERDCommenterComment :call NERDComment(1, "norm")
 nnoremap <silent> <Plug>NERDCommenterComment :call NERDComment(0, "norm")
-nmap <silent> <F8> <Plug>ShowScratchBuffer
-nmap <silent> <C-S-Right> :wincmd l
-nmap <silent> <C-S-Left> :wincmd h
-nmap <silent> <C-S-Down> :wincmd j
-nmap <silent> <C-S-Up> :wincmd k
-nmap <C-Tab> :BufExplorer
+nnoremap <F5> :GundoToggle
+nnoremap <C-Tab> :CtrlPMRU
 vmap <C-Down> ]egv
 vmap <C-Up> [egv
 nmap <C-Down> ]e
 nmap <C-Up> [e
-map <S-Insert> <MiddleMouse>
-imap  y
+nmap <silent> <C-S-Right> :wincmd l
+nmap <silent> <C-S-Left> :wincmd h
+nmap <silent> <C-S-Down> :wincmd j
+nmap <silent> <C-S-Up> :wincmd k
 imap  ddi
-imap  :call StartTerm()
-imap <silent>  :promptfind
 imap S <Plug>ISurround
 imap s <Plug>Isurround
-imap <silent>  :promptrepl
+imap  :%s/old/new/gc
 inoremap <silent> 	 =TriggerSnippet()
-imap  :Ack 
+imap  <Plug>SuperTabBackward
+imap  :wqa
 inoremap <silent> 	 =ShowAvailableSnips()
 imap  :wa
-imap  :vsplit
-imap  =CtrlXPP()
+imap  :Bclosei
 imap <silent>  :undoi
-nmap <silent>  :redo
-nmap  
-nmap  :q
-map  :Bclose
-nmap  :NERDTree
-map  :CommandT
+imap <silent> OC <Right>
+imap \p "+gP
+imap \f :Ack 
+inoremap \l :MRU
+inoremap \nf :NERDTreeFind
+imap \m \c 
+imap \v :vsplit
+imap \h :split
+imap \n :NERDTreeToggle
 imap \\ :ZoomWin
+imap \b :CtrlPBuffer
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set autoindent
@@ -229,8 +255,6 @@ set copyindent
 set noequalalways
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
-set guifont=Monospace
-set guioptions=aegirLt
 set helplang=en
 set hidden
 set history=1000
@@ -238,35 +262,37 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set listchars=tab:▸\ ,eol:¬
-set mouse=a
+set listchars=tab:▸\ ,eol:¬,nbsp:.
+set nomodeline
 set omnifunc=syntaxcomplete#Complete
+set pastetoggle=<F2>
 set printoptions=paper:a4
 set ruler
-set runtimepath=~/.vim,~/.vim/bundle/ack.vim,~/.vim/bundle/bufexplorer.zip,~/.vim/bundle/Command-T,~/.vim/bundle/Conque-Shell,~/.vim/bundle/ctags.vim,~/.vim/bundle/extradite.vim,~/.vim/bundle/fugitive.vim,~/.vim/bundle/Gundo,~/.vim/bundle/hexHighlight.vim,~/.vim/bundle/rails.vim,~/.vim/bundle/Rainbow-Parenthesis,~/.vim/bundle/repeat.vim,~/.vim/bundle/ruby-menu.vim,~/.vim/bundle/scratch-utility,~/.vim/bundle/scratch.vim,~/.vim/bundle/snipMate,~/.vim/bundle/SuperTab,~/.vim/bundle/surround.vim,~/.vim/bundle/The-NERD-Commenter,~/.vim/bundle/The-NERD-tree,~/.vim/bundle/unimpaired.vim,~/.vim/bundle/YankRing.vim,~/.vim/bundle/ZoomWin,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim72,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/bundle/snipMate/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/bundle/Gundo,~/.vim/bundle/JSON.vim,~/.vim/bundle/Tabular,~/.vim/bundle/The-NERD-Commenter,~/.vim/bundle/The-NERD-tree,~/.vim/bundle/VisIncr,~/.vim/bundle/YankRing.vim,~/.vim/bundle/ZoomWin,~/.vim/bundle/ack.vim,~/.vim/bundle/ctrlp.vim,~/.vim/bundle/delimitMate,~/.vim/bundle/fugitive.vim,~/.vim/bundle/haml.zip,~/.vim/bundle/hexHighlight.vim,~/.vim/bundle/jQuery,~/.vim/bundle/matchit.zip,~/.vim/bundle/mru.vim,~/.vim/bundle/rails.vim,~/.vim/bundle/repeat.vim,~/.vim/bundle/scratch-utility,~/.vim/bundle/snipmate.vim,~/.vim/bundle/supertab,~/.vim/bundle/surround.vim,~/.vim/bundle/taglist.vim,~/.vim/bundle/unimpaired.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim73,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/bundle/Tabular/after,~/.vim/bundle/snipmate.vim/after,~/.vim/after
 set shiftwidth=2
-set showtabline=0
+set showmatch
 set smartcase
 set smartindent
 set smarttab
+set softtabstop=2
+set statusline=[%n]\ %h%w%m%r%<%.99f\ %y\ [%{strlen(&fenc)?&fenc:'none'}/%{&ff}]%=Line:\ %l/%L\ [%p%%]\ Column:\ %c-%v\ [%{FileSize()}]\ 
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set noswapfile
 set tabstop=2
-set termencoding=utf-8
 set title
-set updatetime=500
-set wildignore=gems/*,*.gif,*.py[co],.git,*.jpg
+set visualbell
+set wildignore=gems/*,*.gif,*.py[co],.git,*.jpg,vendor/*,logs/*,log/*
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/xing
+cd ~/
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 engines/jobs/app/models/jobs/subcategory.rb
-silent! argdel *
-edit engines/jobs/app/models/jobs/subcategory.rb
+badd +0 /etc/postgresql/9.1/main/pg_hba.conf
+args /etc/postgresql/9.1/main/pg_hba.conf
+edit /etc/postgresql/9.1/main/pg_hba.conf
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -276,28 +302,63 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 31 + 40) / 80)
-exe 'vert 2resize ' . ((&columns * 48 + 40) / 80)
+exe 'vert 1resize ' . ((&columns * 31 + 69) / 139)
+exe 'vert 2resize ' . ((&columns * 107 + 69) / 139)
 argglobal
 enew
 file NERD_tree_1
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <Plug>delimitMateJumpMany =len(b:_l_delimitMate_buffer) ? delimitMate#Finish(0) : delimitMate#JumpMany()
+imap <buffer> <RightMouse> <Plug>delimitMateMRightMouse
+imap <buffer> <LeftMouse> <Plug>delimitMateMLeftMouse
+imap <buffer> <S-Up> <Plug>delimitMateS-Up
+imap <buffer> <S-Down> <Plug>delimitMateS-Down
+imap <buffer> <PageDown> <Plug>delimitMatePageDown
+imap <buffer> <PageUp> <Plug>delimitMatePageUp
+imap <buffer> <Down> <Plug>delimitMateDown
+imap <buffer> <Up> <Plug>delimitMateUp
+imap <buffer> <End> <Plug>delimitMateEnd
+imap <buffer> <Home> <Plug>delimitMateHome
+imap <buffer> <Right> <Plug>delimitMateRight
+imap <buffer> <Left> <Plug>delimitMateLeft
+imap <buffer> <Del> <Plug>delimitMateDel
+imap <buffer> <S-BS> <Plug>delimitMateS-BS
+imap <buffer> <BS> <Plug>delimitMateBS
+imap <buffer> <silent> g <Plug>delimitMateJumpMany
+imap <buffer>  <Plug>delimitMateEsc
+imap <buffer> " <Plug>delimitMate"
+imap <buffer> ' <Plug>delimitMate'
+imap <buffer> ( <Plug>delimitMate(
+imap <buffer> ) <Plug>delimitMate)
+imap <buffer> [ <Plug>delimitMate[
+imap <buffer> ] <Plug>delimitMate]
+imap <buffer> ` <Plug>delimitMate`
+imap <buffer> { <Plug>delimitMate{
+imap <buffer> } <Plug>delimitMate}
+let &cpo=s:cpo_save
+unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
-setlocal balloonexpr=
 setlocal nobinary
-setlocal bufhidden=
+setlocal bufhidden=hide
 setlocal nobuflisted
 setlocal buftype=nofile
 setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal copyindent
+setlocal cryptmethod=
+setlocal nocursorbind
 setlocal nocursorcolumn
 set cursorline
 setlocal cursorline
@@ -324,8 +385,8 @@ setlocal formatexpr=
 setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
+setlocal iminsert=0
+setlocal imsearch=0
 setlocal include=
 setlocal includeexpr=
 setlocal indentexpr=
@@ -339,7 +400,7 @@ set list
 setlocal list
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
-setlocal modeline
+setlocal nomodeline
 setlocal nomodifiable
 setlocal nrformats=octal,hex
 set number
@@ -352,13 +413,14 @@ setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
+setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=2
 setlocal noshortname
 setlocal smartindent
-setlocal softtabstop=0
+setlocal softtabstop=2
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
@@ -374,6 +436,7 @@ setlocal tabstop=2
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
+setlocal noundofile
 setlocal nowinfixheight
 setlocal winfixwidth
 set nowrap
@@ -383,24 +446,38 @@ wincmd w
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-nmap <buffer> gf <Plug>RailsTabFind
-nmap <buffer> f <Plug>RailsSplitFind
-nmap <buffer> [f <Plug>RailsAlternate
-nmap <buffer> ]f <Plug>RailsRelated
-nmap <buffer> gf <Plug>RailsFind
-nnoremap <buffer> <silent> <Plug>RailsTabFind :RTfind
-nnoremap <buffer> <silent> <Plug>RailsVSplitFind :RVfind
-nnoremap <buffer> <silent> <Plug>RailsSplitFind :RSfind
-nnoremap <buffer> <silent> <Plug>RailsFind :REfind
-nnoremap <buffer> <silent> <Plug>RailsRelated :R
-nnoremap <buffer> <silent> <Plug>RailsAlternate :A
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
+imap <buffer> <RightMouse> <Plug>delimitMateMRightMouse
+imap <buffer> <LeftMouse> <Plug>delimitMateMLeftMouse
+imap <buffer> <S-Up> <Plug>delimitMateS-Up
+imap <buffer> <S-Down> <Plug>delimitMateS-Down
+imap <buffer> <PageDown> <Plug>delimitMatePageDown
+imap <buffer> <PageUp> <Plug>delimitMatePageUp
+imap <buffer> <Down> <Plug>delimitMateDown
+imap <buffer> <Up> <Plug>delimitMateUp
+imap <buffer> <End> <Plug>delimitMateEnd
+imap <buffer> <Home> <Plug>delimitMateHome
+imap <buffer> <Right> <Plug>delimitMateRight
+imap <buffer> <Left> <Plug>delimitMateLeft
+imap <buffer> <Del> <Plug>delimitMateDel
+imap <buffer> <S-BS> <Plug>delimitMateS-BS
+imap <buffer> <BS> <Plug>delimitMateBS
+inoremap <buffer> <Plug>delimitMateJumpMany =len(b:_l_delimitMate_buffer) ? delimitMate#Finish(0) : delimitMate#JumpMany()
+imap <buffer> <silent> g <Plug>delimitMateJumpMany
+imap <buffer>  <Plug>delimitMateEsc
+imap <buffer> " <Plug>delimitMate"
+imap <buffer> ' <Plug>delimitMate'
+imap <buffer> ( <Plug>delimitMate(
+imap <buffer> ) <Plug>delimitMate)
+imap <buffer> [ <Plug>delimitMate[
+imap <buffer> ] <Plug>delimitMate]
+imap <buffer> ` <Plug>delimitMate`
+imap <buffer> { <Plug>delimitMate{
+imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
-setlocal balloonexpr=RubyBalloonexpr()
 setlocal nobinary
 setlocal bufhidden=
 setlocal buflisted
@@ -409,22 +486,27 @@ setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
 setlocal comments=:#
 setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
-setlocal completefunc=syntaxcomplete#Complete
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
 setlocal copyindent
+setlocal cryptmethod=
+setlocal nocursorbind
 setlocal nocursorcolumn
 set cursorline
 setlocal cursorline
-setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
+setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'ruby'
-setlocal filetype=ruby
+if &filetype != 'conf'
+setlocal filetype=conf
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -440,72 +522,74 @@ setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=^\\s*\\<\\(load\\|w*require\\)\\>
-setlocal includeexpr=RailsIncludeexpr()
-setlocal indentexpr=GetRubyIndent()
-setlocal indentkeys=0{,0},0),0],!^F,o,O,e,=end,=elsif,=when,=ensure,=rescue,==begin,==end
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=ri\ -T
+setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 set list
 setlocal list
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
-setlocal modeline
+setlocal nomodeline
 setlocal modifiable
 setlocal nrformats=octal,hex
 set number
 setlocal number
 set numberwidth=1
 setlocal numberwidth=1
-setlocal omnifunc=rubycomplete#Complete
-setlocal path=.,~/Projects/xing,~/Projects/xing/app,~/Projects/xing/app/models,~/Projects/xing/app/controllers,~/Projects/xing/app/helpers,~/Projects/xing/config,~/Projects/xing/lib,~/Projects/xing/app/views,~/Projects/xing/test,~/Projects/xing/test/unit,~/Projects/xing/test/functional,~/Projects/xing/test/integration,~/Projects/xing/app/*,~/Projects/xing/vendor,~/Projects/xing/vendor/plugins/*/lib,~/Projects/xing/vendor/plugins/*/test,~/Projects/xing/vendor/rails/*/lib,~/Projects/xing/vendor/rails/*/test,/usr/local/ruby187pl300patched/lib/ruby/site_ruby/1.8,/usr/local/ruby187pl300patched/lib/ruby/site_ruby/1.8/i686-linux,/usr/local/ruby187pl300patched/lib/ruby/site_ruby,/usr/local/ruby187pl300patched/lib/ruby/vendor_ruby/1.8,/usr/local/ruby187pl300patched/lib/ruby/vendor_ruby/1.8/i686-linux,/usr/local/ruby187pl300patched/lib/ruby/vendor_ruby,/usr/local/ruby187pl300patched/lib/ruby/1.8,/usr/local/ruby187pl300patched/lib/ruby/1.8/i686-linux,
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
+setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=2
 setlocal noshortname
-setlocal nosmartindent
+setlocal smartindent
 setlocal softtabstop=2
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%<%f\ %h%m%r%{rails#statusline()}%=%-14.(%l,%c%V%)\ %P
-setlocal suffixesadd=.rb,.rhtml,.erb,.rxml,.builder,.rjs,.mab,.liquid,.haml,.dryml,.mn,.yml,.csv,.rake,s.rb
+setlocal statusline=
+setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'ruby'
-setlocal syntax=ruby
+if &syntax != 'conf'
+setlocal syntax=conf
 endif
 setlocal tabstop=2
-setlocal tags=~/Projects/xing/tmp/tags,./tags,./TAGS,tags,TAGS,~/Projects/xing/tags
+setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
+setlocal noundofile
 setlocal nowinfixheight
 setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+let s:l = 85 - ((17 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+85
+normal! 068l
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 31 + 40) / 80)
-exe 'vert 2resize ' . ((&columns * 48 + 40) / 80)
+exe 'vert 1resize ' . ((&columns * 31 + 69) / 139)
+exe 'vert 2resize ' . ((&columns * 107 + 69) / 139)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
