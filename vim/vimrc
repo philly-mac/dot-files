@@ -107,11 +107,6 @@ else
   set statusline+=\ [%{FileSize()}]\                "Dateigröße
 endif
 
-"
-noremap j <Up>
-noremap k <Down>
-
-"
 " Window movement
 nmap <silent> <CS-Up> :wincmd k<CR>
 nmap <silent> <CS-Down> :wincmd j<CR>
@@ -155,6 +150,7 @@ inoremap <C-Tab> <ESC>:CtrlPMRU<CR>
 nmap <C-w> :Bclose<CR>
 imap <C-w> <esc>:Bclose<CR><esc>i
 
+" Close everything
 nmap <C-q> :wqa<cr>
 imap <C-q> <esc>:wqa<cr>
 
@@ -162,6 +158,7 @@ imap <C-q> <esc>:wqa<cr>
 nmap <C-n> :NERDTreeToggle<cr>
 imap <C-n> <esc>:NERDTreeToggle<cr>
 
+" Show open buffers
 nmap <Leader>b :CtrlPBuffer<cr>
 imap <Leader>b <esc>:CtrlPBuffer<cr>
 
