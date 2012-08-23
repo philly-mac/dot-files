@@ -60,7 +60,7 @@
         Ctrl + Shift + Left                     => Move to the window to the left
 
 
-## Leader (\)
+## Leader (\\)
 
         Leader + Leader                         => ZoomWin
         Leader + /                              => Clear highlighted words
