@@ -142,6 +142,10 @@ nmap <C-c> yy
 imap <C-c> <esc>yy<esc>i
 vmap <C-c> y
 
+" Delete line
+nmap <C-d> dd
+imap <C-d> <esc>dd<esc>i
+
 if has("gui_running")
   " find
   nmap <silent> <C-f> <ESC>:promptfind<CR>
@@ -215,10 +219,6 @@ vmap <M-c> "+ygv
 nmap <M-h> :split<cr>
 imap <M-h> <esc>:split<cr>
 
-" Delete line
-nmap <M-k> dd
-imap <M-k> <esc>dd<esc>i
-
 " execute a nerdtreefind
 inoremap <M-l> <esc>:NERDTreeFind<cr>
 nnoremap <M-l> <esc>:NERDTreeFind<cr>
@@ -226,6 +226,10 @@ nnoremap <M-l> <esc>:NERDTreeFind<cr>
 " search through all files
 nmap <M-f> :ack<space>
 imap <M-f> <esc>:ack<space>
+
+" Delete line
+nmap <M-k> dd
+imap <M-k> <esc>dd<esc>i
 
 " Toggle NERDTree
 nmap <M-n> :NERDTreeToggle<cr>
