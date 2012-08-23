@@ -70,7 +70,7 @@ set guioptions-=m                                                      " Remove 
 " let g:toggleTabs = 1                                                 " Display visual tabs when there is more than tab
 let g:ctrlp_working_path_mode = 0                                      " Don't let ctrlp manage working directory
 let g:ctrlp_match_window_bottom = 1                                    " Show ctrlp window at the top
-let g:ctrlp_match_window_reversed = 1                                  " Show ctrlp matches at the top first
+let g:ctrlp_match_window_reversed = 0                                  " Show ctrlp matches at the top first
 
 
 if has("gui_running")
@@ -168,17 +168,17 @@ endif
 nmap <C-p> :CtrlP<CR>
 imap <C-p> <esc>:CtrlP<CR>
 
-" Paste
-nmap <C-v> p
-imap <C-v> <esc>p<esc>i
-vmap <C-v> p
-
 " Visual Block
 " <C-q>
 
 " saving
 imap <C-s> <esc>:w<cr>a
 nmap <C-s> :w<cr>
+
+" Paste
+nmap <C-v> p
+imap <C-v> <esc>p<esc>i
+vmap <C-v> p
 
 " Close current buffer
 nmap <C-w> :Bclose<CR>
@@ -301,11 +301,19 @@ nmap <silent> <leader>/ :nohlsearch<cr>
 " refresh all buffers from disk
 nmap <leader>r :set noconfirm<cr>:bufdo e!<cr>:set confirm<cr>:syntax on<cr>
 
+" Function key mappings
+
+" Toggle set paste
+" <F2>
+
+" Yank Ring
+noremap <F4> :YRShow<CR>
+
 " Toggle Gundo list
 nnoremap <F5> :GundoToggle<CR>
 
-" Yank Ring
-nnoremap <F4> :YRShow<CR>
+" Scratch Pad
+" <F8>
 
 if has("autocmd")
   augroup vimrc_autocmds
