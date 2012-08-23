@@ -107,60 +107,175 @@ else
   set statusline+=\ [%{FileSize()}]\                "Dateigröße
 endif
 
-" Window movement
-nmap <silent> <CS-Up> :wincmd k<CR>
-nmap <silent> <CS-Down> :wincmd j<CR>
-nmap <silent> <CS-Left> :wincmd h<CR>
-nmap <silent> <CS-Right> :wincmd l<CR>
+" Control key mappings
 
-imap <silent> <CS-Up> :wincmd k<CR>
-imap <silent> <CS-Down> :wincmd j<CR>
-imap <silent> <CS-Left> :wincmd h<CR>
-imap <silent> <CS-Right> :wincmd l<CR>
+" Recent Buffer Menu
+nnoremap <C-Tab> :CtrlPMRU<CR>
+inoremap <C-Tab> <ESC>:CtrlPMRU<CR>
+
+" Control-][ to increase/decrease indentation
+vmap <CS-]> >gv
+vmap <CS-[> <gv
+
+" commenting
+vmap <silent> <C-/> <leader>c<space>
+nmap <silent> <C-/> <leader>c<space>
+imap <silent> <C-/> <esc><leader>c<space>
 
 " Bubble single lines
+imap <C-Up> <ESC>[e<ESC>i
 nmap <C-Up> [e
+
+imap <C-Down> <ESC>]e<ESC>i
 nmap <C-Down> ]e
 
 " Bubble multiple lines
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+" Show open buffers
+nmap <C-b> :CtrlPBuffer<cr>
+imap <C-b> <esc>:CtrlPBuffer<cr>
+
+" Copy
+nmap <C-c> yy
+imap <C-c> <esc>yy<esc>i
+vmap <C-c> y
+
+if has("gui_running")
+  " find
+  nmap <silent> <C-f> <ESC>:promptfind<CR>
+  imap <silent> <C-f> <ESC>:promptfind<CR>
+
+  " find and replace
+  nmap <silent> <C-h> <ESC>:promptrepl<CR>
+  imap <silent> <C-h> <ESC>:promptrepl<CR>
+else
+  " Search and replace
+  imap <C-h> <esc>:%s/old/new/gc
+  nmap <C-h> <esc>:%s/old/new/gc
+endif
+
+" SuperTab completion
+"<C-n>
+
+" Search through project fo file
+nmap <C-p> :CtrlP<CR>
+imap <C-p> <esc>:CtrlP<CR>
+
+" Paste
+nmap <C-v> p
+imap <C-v> <esc>p<esc>i
+vmap <C-v> p
+
+" Visual Block
+" <C-q>
+
 " saving
 imap <C-s> <esc>:w<cr>a
 nmap <C-s> :w<cr>
-
-" Delete line
-nmap <C-d> dd
-imap <C-d> <esc>dd<esc>i
-
-" Control-][ to increase/decrease indentation
-vmap <C-]> >gv
-vmap <C-[> <gv
-
-" Undo
-nmap <silent> <C-z> :undo<CR>
-imap <silent> <C-z> <ESC>:undo<CR>i
-
-" Recent Buffer Menu
-nnoremap <C-Tab> :CtrlPMRU<CR>
-inoremap <C-Tab> <ESC>:CtrlPMRU<CR>
 
 " Close current buffer
 nmap <C-w> :Bclose<CR>
 imap <C-w> <esc>:Bclose<CR><esc>i
 
-" Close everything
-nmap <C-q> :wqa<cr>
-imap <C-q> <esc>:wqa<cr>
+" Cut
+nmap <C-x> dd
+imap <C-x> <esc>dd<esc>i
+vmap <C-x> d
+
+" Undo
+nmap <silent> <C-z> :undo<CR>
+imap <silent> <C-z> <ESC>:undo<CR>i
+
+
+" META key mappings
+
+" Visual Mode
+nmap <M-Up> v
+imap <M-Up> <ESC>v
+vmap <M-Up> v
+
+nmap <M-Down> v
+imap <M-Down> <ESC>v
+vmap <M-Down> v
+
+nmap <M-Left> v
+imap <M-Left> <ESC>v
+vmap <M-Left> v
+
+nmap <M-Right> v
+imap <M-Right> <ESC>v
+vmap <M-Right> v
+
+" Copy selected text into global buffer
+vmap <M-c> "+ygv
+
+" window split horizontal
+nmap <M-h> :split<cr>
+imap <M-h> <esc>:split<cr>
+
+" Delete line
+nmap <M-k> dd
+imap <M-k> <esc>dd<esc>i
+
+" execute a nerdtreefind
+inoremap <M-l> <esc>:NERDTreeFind<cr>
+nnoremap <M-l> <esc>:NERDTreeFind<cr>
+
+" search through all files
+nmap <M-f> :ack<space>
+imap <M-f> <esc>:ack<space>
 
 " Toggle NERDTree
-nmap <C-n> :NERDTreeToggle<cr>
-imap <C-n> <esc>:NERDTreeToggle<cr>
+nmap <M-n> :NERDTreeToggle<cr>
+imap <M-n> <esc>:NERDTreeToggle<cr>
 
-" Show open buffers
-nmap <Leader>b :CtrlPBuffer<cr>
-imap <Leader>b <esc>:CtrlPBuffer<cr>
+" Paste from global buffer
+nmap <M-p> "+gP
+imap <M-p> "+gP
+
+" Close everything
+nmap <M-q> :wqa<cr>
+imap <M-q> <esc>:wqa<cr>
+
+" Close current window
+imap <M-w> <ESC>:q<CR>
+nmap <M-w> :q<CR>
+
+" large recent buffer ment
+nnoremap <M-r> :MRU<cr>
+inoremap <M-r> <esc>:MRU<cr>
+
+" window split vertical
+nmap <silent> <M-v> :vsplit<cr>
+imap <silent> <M-v> <esc>:vsplit<cr>
+
+" Cut selected text into global buffer
+vmap <silent> <M-x> "+x
+
+" Undo
+nmap <silent> <M-z> :redo<CR>
+imap <silent> <M-z> <ESC>:redo<CR>i
+
+
+" Control + Shift mappings
+
+" Window movement
+nmap <silent> <CS-Up> :wincmd k<CR>
+imap <silent> <CS-Up> :wincmd k<CR>
+
+nmap <silent> <CS-Down> :wincmd j<CR>
+imap <silent> <CS-Down> :wincmd j<CR>
+
+nmap <silent> <CS-Left> :wincmd h<CR>
+imap <silent> <CS-Left> :wincmd h<CR>
+
+nmap <silent> <CS-Right> :wincmd l<CR>
+imap <silent> <CS-Right> :wincmd l<CR>
+
+
+" Leader mappings
 
 " Load the last auto saved sessions
 "nmap <Leader>s :so ~/.vim/sessions/autosession<CR>
@@ -175,56 +290,11 @@ nmap <Leader>ev :e ~/.vimrc<CR>
 " Source (reload) .vimrc
 nmap <Leader>sv :so ~/.vimrc<CR>
 
-" open NERDTree
-nmap <Leader>n :NERDTreeToggle<cr>
-imap <Leader>n <esc>:NERDTreeToggle<cr>
+" clear highlight searchs
+nmap <silent> <leader>/ :nohlsearch<cr>
 
-" Window split horizontal
-nmap <Leader>h :split<cr>
-imap <Leader>h <esc>:split<cr>
-
-" Window split vertical
-nmap <Leader>v <esc>:vsplit<cr>
-imap <Leader>v <esc>:vsplit<cr>
-
-" Commenting
-vmap <Leader>m <Leader>c<space>
-nmap <Leader>m <Leader>c<space>
-imap <Leader>m <esc><Leader>c<space>
-
-" Clear highlight searchs
-nmap <silent> <Leader>/ :nohlsearch<CR>
-
-" Execute a NERDTreeFind whenever a file is opened
-inoremap <Leader>nf <ESC>:NERDTreeFind<CR>
-nnoremap <Leader>nf <ESC>:NERDTreeFind<CR>
-
-" Large Recent buffer ment
-nnoremap <Leader>l :MRU<CR>
-inoremap <Leader>l <esc>:MRU<CR>
-
-" Refresh all buffers from disk
-nmap <Leader>r :set noconfirm<CR>:bufdo e!<CR>:set confirm<CR>:syntax on<CR>
-
-" Search through all files
-nmap <Leader>f :Ack<space>
-imap <Leader>f <ESC>:Ack<space>
-
-" SuperTab completion
-inoremap <C-Space> <C-n>
-
-" SuperTab completion
-"inoremap <C-Space> <C-x><C-p>
-
-" Copy selected text into global buffer
-vmap <Leader>c "+ygv
-
-" Cut selected text into global buffer
-vmap <Leader>x "+x
-
-" Paste from global buffer
-nmap <Leader>p "+gP
-imap <Leader>p "+gP
+" refresh all buffers from disk
+nmap <leader>r :set noconfirm<cr>:bufdo e!<cr>:set confirm<cr>:syntax on<cr>
 
 " Toggle Gundo list
 nnoremap <F5> :GundoToggle<CR>
@@ -249,20 +319,6 @@ if has("autocmd")
 
     autocmd VimEnter * set vb t_vb=
   augroup END
-endif
-
-if has("gui_running")
-  " find
-  nmap <silent> <C-f> <ESC>:promptfind<CR>
-  imap <silent> <C-f> <ESC>:promptfind<CR>
-
-  " find and replace
-  nmap <silent> <C-h> <ESC>:promptrepl<CR>
-  imap <silent> <C-h> <ESC>:promptrepl<CR>
-else
-  " Search and replace
-  imap <C-h> <esc>:%s/old/new/gc
-  nmap <C-h> <esc>:%s/old/new/gc
 endif
 
 function! FileSize()
