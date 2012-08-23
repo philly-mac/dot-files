@@ -14,12 +14,6 @@ syntax on                                                              " Turn on
 highlight WhitespaceEOL ctermbg=red guibg=red                          " Show trailing spaces
 match WhitespaceEOL /\s\+$/
 
-" let mapleader = ','                                                   " Change the Leader key
-" let g:toggleTabs = 1                                                 " Display visual tabs when there is more than tab
-let g:ctrlp_working_path_mode = 0                                      " Don't let ctrlp manage working directory
-let g:ctrlp_match_window_bottom = 0                                    " Show ctrlp window at the top
-let g:ctrlp_match_window_reversed = 0                                  " Show ctrlp matches at the top first
-
 set sessionoptions=buffers,winsize                                     " What to save to sessions file
 set nocompatible                                                       " Set to make sure we don't behave like vi but vim
 set hidden                                                             " hides buffers instead of closing them
@@ -71,6 +65,13 @@ set list                                                               " Show sp
 set listchars=tab:▸\ ,eol:¬,nbsp:.                                     " which special characters to use
 set guioptions-=T                                                      " Start without the toolbar
 set guioptions-=m                                                      " Remove menu bar
+
+" let mapleader = ','                                                   " Change the Leader key
+" let g:toggleTabs = 1                                                 " Display visual tabs when there is more than tab
+let g:ctrlp_working_path_mode = 0                                      " Don't let ctrlp manage working directory
+let g:ctrlp_match_window_bottom = 1                                    " Show ctrlp window at the top
+let g:ctrlp_match_window_reversed = 1                                  " Show ctrlp matches at the top first
+
 
 if has("gui_running")
   set statusline=
