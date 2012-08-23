@@ -299,6 +299,9 @@ nmap <leader>r :set noconfirm<cr>:bufdo e!<cr>:set confirm<cr>:syntax on<cr>
 " Toggle Gundo list
 nnoremap <F5> :GundoToggle<CR>
 
+" Yank Ring
+nnoremap <F4> :YRShow<CR>
+
 if has("autocmd")
   augroup vimrc_autocmds
     " clear auto commands
