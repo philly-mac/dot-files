@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'fileutils'
-require 'bundles'
+require './bundles'
 
 if system("which apt-get 2>&1 > /dev/null")
   pkgs = ['git-core', 'vim-gnome', 'ruby', 'ack-grep', 'exuberant-ctags']

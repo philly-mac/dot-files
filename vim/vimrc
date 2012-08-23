@@ -14,13 +14,7 @@ syntax on                                                              " Turn on
 highlight WhitespaceEOL ctermbg=red guibg=red                          " Show trailing spaces
 match WhitespaceEOL /\s\+$/
 
-" let mapleader = ','                                                   " Change the Leader key
-" let g:toggleTabs = 1                                                 " Display visual tabs when there is more than tab
-let g:ctrlp_working_path_mode = 0                                      " Don't let ctrlp manage working directory
-let g:ctrlp_match_window_bottom = 0                                    " Show ctrlp window at the top
-let g:ctrlp_match_window_reversed = 0                                  " Show ctrlp matches at the top first
-
-" set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,resize,slash,tabpages,unix,winpos,winsize
+set sessionoptions=buffers,winsize                                     " What to save to sessions file
 set nocompatible                                                       " Set to make sure we don't behave like vi but vim
 set hidden                                                             " hides buffers instead of closing them
 set ofu=syntaxcomplete#Complete                                        " Add autocomplete
@@ -71,6 +65,13 @@ set list                                                               " Show sp
 set listchars=tab:▸\ ,eol:¬,nbsp:.                                     " which special characters to use
 set guioptions-=T                                                      " Start without the toolbar
 set guioptions-=m                                                      " Remove menu bar
+
+" let mapleader = ','                                                   " Change the Leader key
+" let g:toggleTabs = 1                                                 " Display visual tabs when there is more than tab
+let g:ctrlp_working_path_mode = 0                                      " Don't let ctrlp manage working directory
+let g:ctrlp_match_window_bottom = 1                                    " Show ctrlp window at the top
+let g:ctrlp_match_window_reversed = 0                                  " Show ctrlp matches at the top first
+
 
 if has("gui_running")
   set statusline=
@@ -167,17 +168,17 @@ endif
 nmap <C-p> :CtrlP<CR>
 imap <C-p> <esc>:CtrlP<CR>
 
-" Paste
-nmap <C-v> p
-imap <C-v> <esc>p<esc>i
-vmap <C-v> p
-
 " Visual Block
 " <C-q>
 
 " saving
 imap <C-s> <esc>:w<cr>a
 nmap <C-s> :w<cr>
+
+" Paste
+nmap <C-v> p
+imap <C-v> <esc>p<esc>i
+vmap <C-v> p
 
 " Close current buffer
 nmap <C-w> :Bclose<CR>
@@ -237,7 +238,7 @@ imap <M-n> <esc>:NERDTreeToggle<cr>
 
 " Paste from global buffer
 nmap <M-p> "+gP
-imap <M-p> "+gP
+imap <M-p> <ESC>"+gPa
 
 " Close everything
 nmap <M-q> :wqa<cr>
@@ -255,12 +256,16 @@ inoremap <M-r> <esc>:MRU<cr>
 nmap <silent> <M-v> :vsplit<cr>
 imap <silent> <M-v> <esc>:vsplit<cr>
 
+" Load the last auto saved sessions
+nmap <M-s> :so ~/.vim/sessions/autosession<CR>
+
 " Cut selected text into global buffer
 vmap <silent> <M-x> "+x
 
 " Undo
 nmap <silent> <M-z> :redo<CR>
 imap <silent> <M-z> <ESC>:redo<CR>i
+
 
 
 " Control + Shift mappings
@@ -280,10 +285,6 @@ imap <silent> <CS-Right> :wincmd l<CR>
 
 
 " Leader mappings
-
-" Load the last auto saved sessions
-"nmap <Leader>s :so ~/.vim/sessions/autosession<CR>
-
 " ZoomWin configuration
 nmap <Leader><Leader> :ZoomWin<CR>
 imap <Leader><Leader> :ZoomWin<CR>
@@ -300,11 +301,19 @@ nmap <silent> <leader>/ :nohlsearch<cr>
 " refresh all buffers from disk
 nmap <leader>r :set noconfirm<cr>:bufdo e!<cr>:set confirm<cr>:syntax on<cr>
 
+" Function key mappings
+
+" Toggle set paste
+" <F2>
+
+" Yank Ring
+noremap <F4> :YRShow<CR>
+
 " Toggle Gundo list
 nnoremap <F5> :GundoToggle<CR>
 
-" Yank Ring
-nnoremap <F4> :YRShow<CR>
+" Scratch Pad
+" <F8>
 
 if has("autocmd")
   augroup vimrc_autocmds
