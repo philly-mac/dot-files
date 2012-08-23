@@ -24,5 +24,5 @@
   "VisIncr",                                                         # Making columns of increasing or decreasing numbers, dates, or daynames.
   "unimpaired.vim",
   ['ctrlp.vim', 'https://github.com/kien/ctrlp.vim.git' ],
-  ['vim-powerline','https://github.com/Lokaltog/vim-powerline.git']
+  "multiselect",
 ]

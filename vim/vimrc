@@ -20,7 +20,7 @@ let g:ctrlp_working_path_mode = 0                                      " Don't l
 let g:ctrlp_match_window_bottom = 0                                    " Show ctrlp window at the top
 let g:ctrlp_match_window_reversed = 0                                  " Show ctrlp matches at the top first
 
-" set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,resize,slash,tabpages,unix,winpos,winsize
+set sessionoptions=buffers,winsize                                     " What to save to sessions file
 set nocompatible                                                       " Set to make sure we don't behave like vi but vim
 set hidden                                                             " hides buffers instead of closing them
 set ofu=syntaxcomplete#Complete                                        " Add autocomplete
@@ -237,7 +237,7 @@ imap <M-n> <esc>:NERDTreeToggle<cr>
 
 " Paste from global buffer
 nmap <M-p> "+gP
-imap <M-p> "+gP
+imap <M-p> <ESC>"+gPa
 
 " Close everything
 nmap <M-q> :wqa<cr>
@@ -255,12 +255,16 @@ inoremap <M-r> <esc>:MRU<cr>
 nmap <silent> <M-v> :vsplit<cr>
 imap <silent> <M-v> <esc>:vsplit<cr>
 
+" Load the last auto saved sessions
+nmap <M-s> :so ~/.vim/sessions/autosession<CR>
+
 " Cut selected text into global buffer
 vmap <silent> <M-x> "+x
 
 " Undo
 nmap <silent> <M-z> :redo<CR>
 imap <silent> <M-z> <ESC>:redo<CR>i
+
 
 
 " Control + Shift mappings
@@ -280,10 +284,6 @@ imap <silent> <CS-Right> :wincmd l<CR>
 
 
 " Leader mappings
-
-" Load the last auto saved sessions
-"nmap <Leader>s :so ~/.vim/sessions/autosession<CR>
-
 " ZoomWin configuration
 nmap <Leader><Leader> :ZoomWin<CR>
 imap <Leader><Leader> :ZoomWin<CR>
