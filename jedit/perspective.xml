@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE PERSPECTIVE SYSTEM "perspective.dtd">
 <PERSPECTIVE>
-<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/app.rb</BUFFER>
-<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/models/invoice.rb</BUFFER>
-<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/controllers/invoices.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/mailers/booking.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/models/booking.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/controllers/bookings.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/spec/controllers/bookings_spec.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/views/mailers/booking/locum_accepted_notification.erb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/spec/spec_helper.rb</BUFFER>
+<BUFFER AUTORELOAD="FALSE" AUTORELOAD_DIALOG="TRUE">/home/philip/Projects/optomlocum.com/app/views/mailers/booking/store_confirmed_notification.erb</BUFFER>
 <VIEW PLAIN="FALSE">
 <PANES>
-"/home/philip/Projects/optomlocum.com/app/app.rb" buffer "/home/philip/Projects/optomlocum.com/app/app.rb" buff "/home/philip/Projects/optomlocum.com/app/models/invoice.rb" buff "/home/philip/Projects/optomlocum.com/app/controllers/invoices.rb" buff "global" bufferset
+"/home/philip/Projects/optomlocum.com/spec/controllers/bookings_spec.rb" buffer "/home/philip/Projects/optomlocum.com/app/mailers/booking.rb" buff "/home/philip/Projects/optomlocum.com/app/models/booking.rb" buff "/home/philip/Projects/optomlocum.com/app/controllers/bookings.rb" buff "/home/philip/Projects/optomlocum.com/spec/controllers/bookings_spec.rb" buff "/home/philip/Projects/optomlocum.com/app/views/mailers/booking/locum_accepted_notification.erb" buff "/home/philip/Projects/optomlocum.com/spec/spec_helper.rb" buff "/home/philip/Projects/optomlocum.com/app/views/mailers/booking/store_confirmed_notification.erb" buff "global" bufferset
 </PANES>
-<GEOMETRY X="1816" Y="90" WIDTH="1592" HEIGHT="872" EXT_STATE="6" />
+<GEOMETRY X="1796" Y="145" WIDTH="1584" HEIGHT="869" EXT_STATE="6" />
 </VIEW>
 </PERSPECTIVE>

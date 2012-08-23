@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE REGISTERS SYSTEM "registers.dtd">
 <REGISTERS>
-<REGISTER NAME="_">require 'dawanda_search/mocks/product'
+<REGISTER NAME="_">        @booking.cancel
 </REGISTER>
 </REGISTERS>

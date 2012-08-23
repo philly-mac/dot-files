@@ -2,12 +2,13 @@
   
 hh
 [vfs.browser.path]
+/home/philip/Projects/optomlocum.com
+/home/philip/Projects
+/home/philip/Projects/dawanda-solr-clean
 /home/philip/.bash
 /home/philip
-/home/philip/Projects/optomlocum.com
 /home/philip/Projects/optomlocum.com/config
 /home/philip/Projects/rEdit
-/home/philip/Projects
 /home/philip/Projects/old
 /home/philip/.jedit/modes
 /home/philip/.jedit
@@ -22,45 +23,47 @@ hh
 user
 user.rb
 [action]
-exit
-plugin-options
-toggle-buffer-switcher
-view-markers
-goto-marker
-openfilefastdockable-toggle
-editor-scheme-selector
-plugin-manager
-close-buffer
 save
-undo
-select-none
+SuperAbbrevs.shiftTab
 paste
-Clipboard/Copy_Lines
+insert-newline-indent
+copy
+delete-line
+SuperAbbrevs.tab
+select-prev-word
+prev-word
+delete
+select-prev-char
+select-end
+select-next-word
+home
+prev-char
 prev-line
 next-line
-global-options
-offwindow.show
-delete-line
 recentbufferswitcher
+finishhim.execute
+openfilefastdockable-toggle
 [clipboard]
-      current_path.should == OptomLocum.url(:locums, :index)\n 
-    describe \"booking transitions\" do\n\n
-:bonus_description  => \"&pound;50 a day for every 100 sales\",
-Dir\[\"#{Padrino.root(\'app/searchers/*\')}\"\].each {|f| require f}
-git://github.com/padrino/padrino-framework.git
-865d67c414290aa6a596cd1f478b205996abae08
-gem \'padrino\', \'0.10.6\'
-:git => \"git://github.com/rails/rails.git\", :ref => \"4aded\"
-\[\"#{base}/vim\",       \"#{home}/.vim\"\],
-puts \"HERE 1\"
-File.expand_path(\'../../config/boot\', __FILE__)
-:telephones => self.telephones.map{|t| t.values}
-<MODE NAME=\"haml\" FILE=\"haml.xml\" FILE_NAME_GLOB=\"*.{haml,html.haml,sass}\" />
-<MODE NAME=\"haml\" FILE=\"haml.xml\" FILE_NAME_GLOB=\"*.haml\" />
-    it \'reindexes\' do\n      @locum.update :first_name => \"#{@locum.first_name}#{@locum.first_name}\"\n
-  it \'reindexes\' do\n    @locum.update :first_name => \"#{@locum.first_name}#{@locum.first_name}\"\n
-    it \'reindexes\' do\n
-  it \'reindexes\' do\n
+          it \'cannont cancel a booking from completed state\' do\n          end\n\n          it \'cannont cancel a booking from cancelled state\' do\n          end
+        it \'cannont cancel a booking from completed state\' do\n        end\n\n        it \'cannont cancel a booking from cancelled state\' do\n        end
+js_it
+description
+:driver => :webkit, :strategy => :truncation
+description, options = {}, &block
+          it \'cancels a booking from confirmed state\' do\n            @booking.update(:state => \'confirmed\')\n            @booking.reload\n            visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n            click_link(\'Cancel?\')\n            fill_in \'cancel_reason\', :with => \"Because I can\"\n            click_button(\'Cancel\')\n            page.should.has_css(\'#notice-message\')\n            current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n            @booking.reload.should.be.cancelled\n          end
+        it \'cancels a booking from confirmed state\' do\n          @booking.update(:state => \'confirmed\')\n          @booking.reload\n          login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled\n        end
+          it \'cancels a booking from accepted state\' do\n            @booking.update(:state => \'accepted\')\n            @booking.reload\n            visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n            click_link(\'Cancel?\')\n            fill_in \'cancel_reason\', :with => \"Because I can\"\n            click_button(\'Cancel\')\n            page.should.has_css(\'#notice-message\')\n            current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n            @booking.reload.should.be.cancelled\n          end
+it \'cancels a booking from accepted state\' do\n          @booking.update(:state => \'accepted\')\n          @booking.reload\n          login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled\n        end
+          it \'cannot canel without a cancelation reason\' do\n            visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n            click_link(\'Cancel?\')\n            click_button(\'Cancel\')\n            page.should.has_css(\'#alert-message\')\n            current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n            @booking.reload.should.not.be.cancelled\n          end
+visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n            click_link(\'Cancel?\')\n            click_button(\'Cancel\')\n            page.should.has_css(\'#alert-message\')\n            current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n            @booking.reload.should.not.be.cancelled
+login_as(@store_user.user)
+it \'cannot canel without a cancelation reason\' do\n          @booking.update(:state => \'accepted\')\n          @booking.reload\n          login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled\n        end
+\n        it \'cancels a booking from requested state\' do\n          login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled\n        end
+@booking.update(:state => \'accepted\')\n          @booking.reload\n          login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled
+@booking.update(:state => \'accepted\')\n        @booking.reload
+login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled
+click_button(\'book\')
+cancel_reason
 [find]
 Store::Searcher
 pry
