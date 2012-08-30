@@ -115,8 +115,8 @@ nnoremap <C-Tab> :CtrlPMRU<CR>
 inoremap <C-Tab> <ESC>:CtrlPMRU<CR>
 
 " Control-][ to increase/decrease indentation
-vmap <CS-]> >gv
-vmap <CS-[> <gv
+vmap <C-]> >gv
+vmap <C-[> <gv
 
 " commenting
 vmap <silent> <C-/> <leader>c<space>
