@@ -11,8 +11,7 @@ alias vi='vim'
 
 PATH=$HOME/bin:$PATH
 RUBYOPT=""
-
-RUBYOPT=""
+BUNDLE_ENV="development"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
@@ -21,4 +20,4 @@ ruby ~/.bash/link_files.rb
 
 ps1_set --prompt '\$' --notime
 
-export RUBYOPT PATH
+export RUBYOPT PATH BUNDLE_ENV
