@@ -118,11 +118,6 @@ inoremap <C-Tab> <ESC>:CtrlPMRU<CR>
 vmap <C-]> >gv
 vmap <C-[> <gv
 
-" commenting
-vmap <silent> <C-/> <leader>c<space>
-nmap <silent> <C-/> <leader>c<space>
-imap <silent> <C-/> <esc><leader>c<space>
-
 " Bubble single lines
 imap <C-Up> <ESC>[e<ESC>i
 nmap <C-Up> [e
@@ -133,6 +128,10 @@ nmap <C-Down> ]e
 " Bubble multiple lines
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
+
+" Select all
+nmap <C-a> ggVG
+imap <C-a> <esc>ggVG
 
 " Show open buffers
 nmap <C-b> :CtrlPBuffer<cr>
@@ -291,6 +290,11 @@ imap <Leader><Leader> :ZoomWin<CR>
 
 " open up your .vimrc
 nmap <Leader>ev :e ~/.vimrc<CR>
+
+" commenting
+vmap <leader>m <leader>c<space>gv
+nmap <leader>m <leader>c<space>
+imap <leader>m <esc><leader>c<space>i
 
 " Source (reload) .vimrc
 nmap <Leader>sv :so ~/.vimrc<CR>

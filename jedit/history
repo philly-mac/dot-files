@@ -23,27 +23,29 @@ hh
 user
 user.rb
 [action]
-save
-SuperAbbrevs.shiftTab
-paste
-insert-newline-indent
-copy
-delete-line
-SuperAbbrevs.tab
-select-prev-word
-prev-word
-delete
-select-prev-char
-select-end
-select-next-word
-home
-prev-char
-prev-line
-next-line
+combined-options
+exit
 recentbufferswitcher
+save
+paste
 finishhim.execute
+backspace
+insert-tab-indent
+copy
 openfilefastdockable-toggle
+undo
+Editing/Move_Lines_Down
+Editing/Move_Lines_Up
+next-line
+prev-line
+prev-char
+next-paragraph
+prev-paragraph
+delete-line
+insert-newline-indent
 [clipboard]
+role_model_type
+    render \'new\'\n
           it \'cannont cancel a booking from completed state\' do\n          end\n\n          it \'cannont cancel a booking from cancelled state\' do\n          end
         it \'cannont cancel a booking from completed state\' do\n        end\n\n        it \'cannont cancel a booking from cancelled state\' do\n        end
 js_it
@@ -62,8 +64,6 @@ it \'cannot canel without a cancelation reason\' do\n          @booking.update(:
 @booking.update(:state => \'accepted\')\n          @booking.reload\n          login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled
 @booking.update(:state => \'accepted\')\n        @booking.reload
 login_as(@store_user.user)\n          visit OptomLocum.url(:bookings, :show, :id => @booking.id)\n          click_link(\'Cancel?\')\n          fill_in \'cancel_reason\', :with => \"Because I can\"\n          click_button(\'Cancel\')\n          page.should.has_css(\'#notice-message\')\n          current_path.should == OptomLocum.url(:bookings, :show, :id => @booking.id)\n          @booking.reload.should.be.cancelled
-click_button(\'book\')
-cancel_reason
 [find]
 Store::Searcher
 pry

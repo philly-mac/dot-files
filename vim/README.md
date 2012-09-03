@@ -8,7 +8,6 @@
 
         Ctrl + ]                                => Increase indentation
         Ctrl + [                                => Decrease indentation
-        Ctrl + /                                => Comment toggle
 
         Ctrl + Tab                              => Recent buffer menu (CtrlP)
         Ctrl + Space                            => Super Tab completion
@@ -16,12 +15,14 @@
         Ctrl + Up                               => Bubble single line up
         Ctrl + Down                             => Bubble single line Down
 
+        ctrl + a                                => Select all
         ctrl + b                                => Buffer list show
         ctrl + c                                => Copy line or slection in visual mode
         Ctrl + d                                => Delete current line
         Ctrl + f                                => Find
         Ctrl + h                                => Find and replace
         Ctrl + i                                => Move forwards through jump list
+        Ctrl + m                                => Comment toggle
         Ctrl + o                                => Move backwards through jump list
         Ctrl + p                                => Search for file in project
         Ctrl + q                                => Visual block mode
