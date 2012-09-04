@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE REGISTERS SYSTEM "registers.dtd">
 <REGISTERS>
-<REGISTER NAME="_">        @booking.cancel
+<REGISTER NAME="_">    render 'new'
 </REGISTER>
 </REGISTERS>

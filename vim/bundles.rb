@@ -8,6 +8,7 @@
   'ack.vim',                                                         # Ack integration
   'fugitive.vim',                                                    # Git integration
   'Gundo',                                                           # Super undo
+  'genutils',                                                        # Super undo
   'hexHighlight.vim',                                                # Highlight hex values in the colour of the hex value
   'haml.zip',                                                        # HAML & SASS syntax file
   'jQuery',                                                          # jQuery Syntax file

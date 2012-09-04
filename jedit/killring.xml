@@ -1,14 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 <!DOCTYPE KILLRING SYSTEM "killring.dtd">
 <KILLRING>
-<ENTRY>            @booking.update(:state =&gt; 'accepted')
-</ENTRY>
-<ENTRY>            @booking.reload
-</ENTRY>
-<ENTRY>login_as(@store_user.user)</ENTRY>
-<ENTRY>store</ENTRY>
-<ENTRY>            login_as(@store_user.user)
-</ENTRY>
 <ENTRY>          login_as(@store_user.user)
 </ENTRY>
 <ENTRY>            fill_in 'cancel_reason', :with =&gt; "Because I can"
@@ -78,4 +70,13 @@
         it 'cannont cancel a booking from cancelled state' do
         end
 </ENTRY>
+<ENTRY>
+  
+  def   </ENTRY>
+<ENTRY>  
+  def   </ENTRY>
+<ENTRY>=</ENTRY>
+<ENTRY>    render 'new'
+</ENTRY>
+<ENTRY>user_type</ENTRY>
 </KILLRING>
