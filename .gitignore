@@ -15,3 +15,6 @@ jedit/killring.xml
 jedit/perspective.xml
 jedit/plugins/projectviewer.ProjectPlugin/*
 jedit/recent.xml
+jedit/perspective.xml
+jedit/history
+/jedit/keymaps/imported_keys.props
