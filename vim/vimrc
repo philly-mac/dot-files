@@ -306,6 +306,9 @@ nmap <leader>r :set noconfirm<cr>:bufdo e!<cr>:set confirm<cr>:syntax on<cr>
 " Toggle set paste
 " <F2>
 
+" Tag List
+noremap <F3> :Tlist<CR>
+
 " Yank Ring
 noremap <F4> :YRShow<CR>
 
