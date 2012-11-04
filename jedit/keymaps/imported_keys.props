@@ -1,5 +1,5 @@
 #jEdit's keymap imported
-#Tue Sep 04 12:19:44 CEST 2012
+#Fri Sep 07 05:37:36 CEST 2012
 end.shortcut2=A+x
 select-end.shortcut2=AS+x
 prev-line.shortcut2=A+i
@@ -22,7 +22,6 @@ select-prev-char.shortcut2=AS+j
 paste-deleted.shortcut=C+e C+y
 select-fold.shortcut=C+e s
 close-buffer.shortcut=C+w
-insert-tab-indent.shortcut=TAB
 recent-buffer.shortcut=C+BACK_QUOTE
 next-char.shortcut=RIGHT
 options.shortcuts.shortcut2=Alternative shortcut
@@ -36,7 +35,7 @@ delete-line.shortcut=CS+k
 vfs.browser.delete.shortcut=DELETE
 insert-newline-indent.shortcut=ENTER
 action-bar.shortcut=C+ENTER
-redo.shortcut=C+e C+z
+redo.shortcut=CS+z
 Clipboard/Copy_Lines.shortcut=CS+c
 expand-fold.shortcut=AS+ENTER
 end.shortcut=END
@@ -175,6 +174,7 @@ select-home.shortcut=S+HOME
 toggle-multi-select.shortcut=C+BACK_SLASH
 select-next-page.shortcut=S+PAGE_DOWN
 open-file.shortcut=C+o
+SuperAbbrevs.tab.shortcut=TAB
 overwrite.shortcut=INSERT
 show-context-menu.shortcut=CONTEXT_MENU
 stop-recording.shortcut=C+m C+s

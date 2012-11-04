@@ -16,6 +16,8 @@ BUNDLE_ENV="development"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
 
+[[ -s "$HOME/.bash/omg" ]] && source "$HOME/.bash/omg"
+
 ruby ~/.bash/link_files.rb
 
 ps1_set --prompt '\$' --notime

@@ -1,7 +1,93 @@
-filetype off
+set nocompatible               " be iMproved
+filetype off                   " required!
 
-silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" Quick seaching through the project files
+Bundle 'kien/ctrlp.vim.git'
+
+" Auto closing parenthesis
+Bundle 'Raimondi/delimitMate.git'
+
+" Snippet support
+Bundle 'ervandew/snipmate.vim.git'
+
+" All completion done via tab key
+Bundle 'ervandew/supertab.git'
+
+
+" Ack integration
+Bundle 'ack.vim',
+
+" Git integration
+Bundle 'fugitive.vim',
+
+" Super undo
+Bundle 'Gundo',
+
+Bundle 'genutils',
+
+" Highlight hex values in the colour of the hex value
+Bundle 'hexHighlight.vim',
+
+" HAML & SASS syntax file
+Bundle 'haml.zip',
+
+" jQuery Syntax file
+Bundle 'jQuery',
+
+" JSON Syntax file
+Bundle 'JSON.vim',
+
+" Use % to jump to the matching character
+Bundle 'matchit.zip',
+
+" List of all the recent files used
+Bundle 'mru.vim',
+
+" Allows multiselect regions and perform actions on them
+Bundle 'multiselect',
+
+" Rails plugin
+Bundle 'rails.vim',
+
+" Enhanced repeater
+Bundle 'repeat.vim',
+
+" Scratch pad
+Bundle 'scratch-utility',
+
+" A plugin that makes put and changing brackets and quotes around string easy
+Bundle 'surround.vim',
+
+" Allows you to align and tabulate  data
+Bundle 'Tabular',
+
+" Shows the tags of methods vars etc
+Bundle 'taglist.vim',
+
+" Commenting out code
+Bundle 'The-NERD-Commenter',
+
+" File browser
+Bundle 'The-NERD-tree',
+
+" Bracket matching
+Bundle 'unimpaired.vim',
+
+" Making columns of increasing or decreasing numbers, dates, or daynames.
+Bundle 'VisIncr',
+
+" Copy and paste ring
+Bundle 'YankRing.vim',
+
+" Zoom in an focus on one window
+Bundle 'ZoomWin',
 
 filetype on                                                            " File extension detection switch
 filetype plugin on
@@ -264,7 +350,6 @@ vmap <silent> <M-x> "+x
 " Undo
 nmap <silent> <M-z> :redo<CR>
 imap <silent> <M-z> <ESC>:redo<CR>i
-
 
 
 " Control + Shift mappings

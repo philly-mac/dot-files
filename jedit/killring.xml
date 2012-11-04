@@ -1,82 +1,33 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 <!DOCTYPE KILLRING SYSTEM "killring.dtd">
 <KILLRING>
-<ENTRY>          login_as(@store_user.user)
+<ENTRY> *= require calendar
 </ENTRY>
-<ENTRY>            fill_in 'cancel_reason', :with =&gt; "Because I can"
-</ENTRY>
-<ENTRY>notice</ENTRY>
-<ENTRY>        it 'cannot canel without a cancelation reason' do
-          @booking.update(:state =&gt; 'accepted')
-          @booking.reload
-          visit OptomLocum.url(:bookings, :show, :id =&gt; @booking.id)
-          click_link('Cancel?')
-          fill_in 'cancel_reason', :with =&gt; "Because I can"
-          click_button('Cancel')
-          page.should.has_css('#notice-message')
-          current_path.should == OptomLocum.url(:bookings, :show, :id =&gt; @booking.id)
-          @booking.reload.should.be.cancelled
-        end
-</ENTRY>
-<ENTRY>        it 'cancels a booking from accepted state' do
-          @booking.update(:state =&gt; 'accepted')
-          @booking.reload
-          login_as(@store_user.user)
-          visit OptomLocum.url(:bookings, :show, :id =&gt; @booking.id)
-          click_link('Cancel?')
-          fill_in 'cancel_reason', :with =&gt; "Because I can"
-          click_button('Cancel')
-          page.should.has_css('#notice-message')
-          current_path.should == OptomLocum.url(:bookings, :show, :id =&gt; @booking.id)
-          @booking.reload.should.be.cancelled
-        end
-
-</ENTRY>
-<ENTRY>        it 'cancels a booking from confirmed state' do
-          @booking.update(:state =&gt; 'confirmed')
-          @booking.reload
-          login_as(@store_user.user)
-          visit OptomLocum.url(:bookings, :show, :id =&gt; @booking.id)
-          click_link('Cancel?')
-          fill_in 'cancel_reason', :with =&gt; "Because I can"
-          click_button('Cancel')
-          page.should.has_css('#notice-message')
-          current_path.should == OptomLocum.url(:bookings, :show, :id =&gt; @booking.id)
-          @booking.reload.should.be.cancelled
-        end</ENTRY>
-<ENTRY>def</ENTRY>
-<ENTRY>def j()
-          
-  end</ENTRY>
-<ENTRY>def js()
-          
-  end</ENTRY>
-<ENTRY>def js_()
-          
-  end</ENTRY>
-<ENTRY>def js_i()
-          
-  end</ENTRY>
-<ENTRY>def js_it()
-          
-  end</ENTRY>
-<ENTRY>it</ENTRY>
-<ENTRY>, :driver =&gt; :webkit, :strategy =&gt; :truncation</ENTRY>
-<ENTRY>
-
-        it 'cannont cancel a booking from completed state' do
-        end
-
-        it 'cannont cancel a booking from cancelled state' do
-        end
+<ENTRY>javascript</ENTRY>
+<ENTRY>bookings</ENTRY>
+<ENTRY>additional_stylesheets</ENTRY>
+<ENTRY>javascript_include_tag</ENTRY>
+<ENTRY>table</ENTRY>
+<ENTRY>#main-window
 </ENTRY>
 <ENTRY>
-  
-  def   </ENTRY>
-<ENTRY>  
-  def   </ENTRY>
-<ENTRY>=</ENTRY>
-<ENTRY>    render 'new'
+#calender
+  border: 1px solid $border-color
+
+  th
+    a
+      font-size: 10px</ENTRY>
+<ENTRY>calender</ENTRY>
+<ENTRY>s</ENTRY>
+<ENTRY>  # include ::RegularsBlocksHelper
 </ENTRY>
-<ENTRY>user_type</ENTRY>
+<ENTRY>tblPost</ENTRY>
+<ENTRY>edit_regulars_block_path</ENTRY>
+<ENTRY>edit_regular_block</ENTRY>
+<ENTRY>&amp;nbsp;</ENTRY>
+<ENTRY>#6c2f85</ENTRY>
+<ENTRY>#ff4c4c</ENTRY>
+<ENTRY>#4cb1ff</ENTRY>
+<ENTRY>r</ENTRY>
+<ENTRY>#fff389</ENTRY>
 </KILLRING>

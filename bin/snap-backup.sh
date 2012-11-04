@@ -8,7 +8,7 @@
 #    echo 'Enter a time frequency' && \
 #    exit 1
 
-if [[ -e "/media/SUPER-MAC-BACKUP/unencrypted" ]]; then
+if [[ -e "/media/SUPER-MAC-BACKUP/encrypted/unencrypted" ]]; then
   RSNAPSHOT=`which rsnapshot`
   $RSNAPSHOT daily
 else

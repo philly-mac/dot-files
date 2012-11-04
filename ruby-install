@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ `id -u` != 0 ]]; then
+  echo "Please run this script as root"
+  exit 1
+fi
+
+RUBY_VERSION=$1
+
+apt-get -y install libcurl4-openssl-dev curl git build-essential \
+  openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev \
+  libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev \
+  autoconf libc6-dev ncurses-dev automake libtool bison pkg-config
+
+cd /tmp && \
+  wget -c http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$RUBY_VERSION.tar.bz2 && \
+  tar -xzf ruby-$RUBY_VERSION.tar.bz2 && \
+  cd ruby-$RUBY_VERSION
+
+./configure --prefix=/usr/local; make; make install
